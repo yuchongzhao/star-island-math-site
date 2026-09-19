@@ -1,0 +1,6 @@
+{
+  "id":"./", "name":"星岛数学 · 一次一小步", "short_name":"星岛数学", "lang":"zh-CN",
+  "description":"离线数学探索、讲解、换题验证与学习记录", "start_url":"./index.html", "scope":"./",
+  "display":"standalone", "background_color":"#fbfaf3", "theme_color":"#126c66", "orientation":"any",
+  "icons":[{"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},{"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}]
+}
