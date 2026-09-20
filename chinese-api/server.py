@@ -32,6 +32,7 @@ def mint(kind, device, lifetime):
     return payload + '.' + b64(hmac.new(CONFIG['signing'].encode(),payload.encode(),hashlib.sha256).digest())
 def check_token(token, kind):
     try:
+        if not isinstance(token,str) or len(token)>2000: raise ValueError()
         payload, signature = token.split('.')
         expected = b64(hmac.new(CONFIG['signing'].encode(),payload.encode(),hashlib.sha256).digest())
         if not hmac.compare_digest(signature, expected): raise ValueError()
@@ -104,7 +105,7 @@ def validate_cards(result,pages,mode,source_id):
     if not isinstance(result,dict) or result.get('verified') is not True: raise Problem('两次核对没有一致确认文字，请换一张更清晰的照片。')
     raw=result.get('cards')
     if not isinstance(raw,list) or not 1<=len(raw)<=24: raise Problem('这页未生成可用任务，请换清晰的课文正文页。')
-    cards=[];seen=set();counts={'word':0,'recite':0}
+    cards=[];seen=set();counts={'word':0,'recite':0};parts={}
     for c in raw:
         if not isinstance(c,dict): raise Problem('任务格式不完整，请重试。')
         kind=c.get('kind');im=c.get('image');text=string(c.get('text'),400)
@@ -119,7 +120,8 @@ def validate_cards(result,pages,mode,source_id):
         pinyin=string(c.get('pinyin',''),80,False);clue=string(c.get('clue',''),160,False);tip=string(c.get('tip',''),240,False)
         if kind=='word' and (not pinyin or re.search(r'[\u3400-\u9fff]',pinyin)): raise Problem('字词的拼音未能核对，请重新生成。')
         if kind=='word' and canonical(text) in canonical(clue): clue='听读音、看拼音，写出课文里的这个词。'
-        cards.append({'id':'auto-'+digest(key)[:24],'kind':kind,'text':text,'pinyin':pinyin,'clue':clue,'tip':tip,'title':page['lesson']+(' · 第 '+str(page['page'])+' 页' if page['page'] else ' · 照片 '+str(im))+' · '+('字词' if kind=='word' else '背默片段'), 'source':'school','known':False,'enabled':True,'origin':{'sourceId':source_id,'image':im,'page':page['page'],'lesson':page['lesson']}})
+        parts[(im,kind)]=parts.get((im,kind),0)+1
+        cards.append({'id':'auto-'+digest(key)[:24],'kind':kind,'text':text,'pinyin':pinyin,'clue':clue,'tip':tip,'title':page['lesson']+(' · 第 '+str(page['page'])+' 页' if page['page'] else ' · 照片 '+str(im))+' · '+('字词' if kind=='word' else '背默片段 '+str(parts[(im,kind)])+'（'+str(n)+' 字）'), 'source':'school','known':False,'enabled':True,'origin':{'sourceId':source_id,'image':im,'page':page['page'],'lesson':page['lesson']}})
     if not cards or mode in ('word','both') and not counts['word'] or mode in ('recite','both') and not counts['recite']: raise Problem('这页不适合同时练两项。请改选“只练字词”或“只练背默”，再生成。')
     return cards
 
@@ -213,10 +215,10 @@ class Handler(BaseHTTPRequestHandler):
 
 def load_config():
     if os.environ.get('LOCAL_DEV')=='1':
-        import sys
-        sys.path.insert(0,'/Users/zhaoyuchong/.codex/skills/external-ai-router/scripts')
-        import keychain_store as vault
-        return {'provider':vault.get('zhipu'),'signing':vault.get('star-chinese-signing')}
+        import subprocess
+        script="import sys,json;sys.path.insert(0,'/Users/zhaoyuchong/.codex/skills/external-ai-router/scripts');import keychain_store as v;print(json.dumps({'provider':v.get('zhipu'),'signing':v.get('star-chinese-service-signing')}))"
+        result=subprocess.run(['/usr/bin/python3','-c',script],capture_output=True,check=True,timeout=10)
+        return json.loads(result.stdout)
     return json.loads(Path('/etc/secrets/chinese-ai.json').read_text())
 if __name__=='__main__':
     CONFIG.update(load_config())
