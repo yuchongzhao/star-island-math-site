@@ -234,7 +234,7 @@ class Handler(BaseHTTPRequestHandler):
 def load_config():
     if os.environ.get('LOCAL_DEV')=='1':
         import subprocess
-        script="import sys,json;sys.path.insert(0,'/Users/zhaoyuchong/.codex/skills/external-ai-router/scripts');import keychain_store as v;print(json.dumps({'provider':v.get('zhipu'),'signing':v.get('star-chinese-service-signing')}))"
+        script="import sys,json;sys.path.insert(0,"+repr(str(Path.home()/'.codex/skills/external-ai-router/scripts'))+");import keychain_store as v;print(json.dumps({'provider':v.get('zhipu'),'signing':v.get('star-chinese-service-signing')}))"
         result=subprocess.run(['/usr/bin/python3','-c',script],capture_output=True,check=True,timeout=10)
         return json.loads(result.stdout)
     return json.loads(Path('/etc/secrets/chinese-ai.json').read_text())
