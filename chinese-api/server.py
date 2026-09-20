@@ -158,6 +158,13 @@ def prune_and_quota(device):
     COUNTS[(today,'all')]=COUNTS.get((today,'all'),0)+1
     COUNTS[(today,device)]=COUNTS.get((today,device),0)+1
 
+def expire_jobs():
+    while True:
+        time.sleep(60)
+        with LOCK:
+            for key in list(JOBS):
+                if JOBS[key]['expires'] < time.time() and JOBS[key]['status'] != 'running': del JOBS[key]
+
 def run_job(key, images, mode):
     try:
         result=generate(images,mode)
@@ -193,7 +200,7 @@ class Handler(BaseHTTPRequestHandler):
             if not re.fullmatch(r'/jobs/[a-f0-9]{32}',self.path): raise Problem('请求不存在。',404)
             with LOCK:
                 job=next((x for x in JOBS.values() if x['id']==self.path[6:] and x['device']==device),None)
-                if not job: raise Problem('这次生成已过期，请重新拍照生成。',404)
+                if not job or job['expires'] < time.time(): raise Problem('这次生成已过期，请重新拍照生成。',404)
                 result={k:v for k,v in job.items() if k in ('id','status','result','message')}
             self.send_json(200,result)
         except Problem as e: self.send_json(e.status,{'message':e.message})
@@ -235,4 +242,5 @@ if __name__=='__main__':
     CONFIG.update(load_config())
     if not CONFIG.get('provider') or not CONFIG.get('signing'): raise SystemExit('Service secrets are not configured')
     server=ThreadingHTTPServer(('127.0.0.1' if os.environ.get('LOCAL_DEV')=='1' else '0.0.0.0',int(os.environ.get('PORT','4190'))),Handler)
+    threading.Thread(target=expire_jobs,daemon=True).start()
     print('Chinese photo service ready',flush=True);server.serve_forever()
