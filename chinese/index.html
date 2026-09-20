@@ -10,7 +10,7 @@
 @media(max-width:650px){.hero-art{height:150px}.session-head{flex-wrap:wrap}.session-head .meta{min-width:50%}.poem{font-size:25px}.text-answer{font-size:21px}.tabs button{font-size:12px;padding:7px 8px}}
 .lesson-intro{max-width:900px;margin:20px auto}.mission-map{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.mission-map li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:15px;background:#f3ede2;padding:14px 12px}.mission-map li>span{width:27px;height:27px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:#e5d4bd;font-size:14px}.mission-map li.current{background:#f5dfc9;border-color:#b37a56}.mission-map li.complete{background:#e9eee0}.mission-map b{display:block;font-size:14px}.mission-map small{display:block;font-size:12px;color:var(--muted)}.lesson-agenda>div,.lesson-results>div{display:flex;align-items:start;gap:15px;border-bottom:1px solid var(--line);padding:18px 0}.lesson-agenda>div:last-child,.lesson-results>div:last-child{border:0}.lesson-agenda>div>span,.lesson-results>div>span{width:34px;height:34px;border-radius:11px;background:#eddbc3;display:grid;place-items:center;flex-shrink:0;font-weight:700}.lesson-agenda section,.lesson-results section{flex:1;min-width:0}.lesson-agenda h3,.lesson-results h3{margin-bottom:6px}.lesson-agenda p,.lesson-results p{margin-bottom:3px}.lesson-agenda>div>small{color:var(--muted);font-size:12px;white-space:nowrap}.finish-rule{padding:18px;border-radius:16px;background:#f5ead6;margin-top:18px}.task-command{background:#f5e5d1;border-radius:16px;padding:20px;margin-bottom:22px}.task-command>span{font-size:13px;color:var(--teal);display:block;margin-bottom:7px}.task-command h2{font-size:27px;margin-bottom:8px}.task-command p{margin:0;font-size:16px}.prompt-box,.assigned-passage{border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:16px 0}.prompt-box .pinyin{font-size:32px;margin:8px 0}.assigned-passage h3{font-size:24px}.assigned-passage p{margin:0}.instruction-example{background:#f2eade;border-radius:16px;padding:18px;margin:15px 0}.instruction-example small{display:block;color:var(--muted)}.instruction-example strong{font-size:21px;display:block;margin:5px 0}.instruction-example p{font-size:15px;margin-bottom:0}.clear-steps{padding-left:24px}.clear-steps li{padding:5px 0}.lesson-intro .actions .primary{font-size:19px}.question-card .actions{margin-top:22px}.question-card .feedback+.actions{margin-top:22px}[hidden]{display:none!important}
 @media(max-width:900px){.mission-map{gap:7px}.mission-map li{padding:11px 8px;gap:7px}.mission-map b{font-size:13px}.mission-map li>span{width:24px;height:24px}.lesson-agenda>div{flex-wrap:wrap}.lesson-agenda>div>small{margin-left:49px}}@media(max-width:650px){.mission-map{grid-template-columns:repeat(2,1fr)}.task-command h2{font-size:23px}.task-command{padding:17px}.assigned-passage h3{font-size:21px}.lesson-intro .actions .primary{font-size:17px}}
-</style></head><body><header class="app-header"><button class="brand" data-action="nav" data-to="home"><span class="brand-mark" aria-hidden="true">✦</span>星岛语文</button><nav class="tabs" aria-label="主要页面"><button data-action="nav" data-to="home">今日任务</button><button data-action="nav" data-to="library">课本与字词</button><button data-action="nav" data-to="records">成长手记</button><button data-action="nav" data-to="settings">设置</button></nav><div class="save-status" id="save-status">本机记录</div></header><main id="main"><h1>正在打开星岛语文…</h1><p>请在 Safari 中打开安装网址。文件快速预览可能不运行互动程序。</p></main><div id="modal-root"></div><div id="toast" class="toast" role="status" hidden></div><input type="file" id="import-file" accept="application/json,.json" hidden><noscript>互动练习需要 JavaScript，请使用 Safari。</noscript><script>window.CHINESE_CACHE="star-chinese-c4f1c622c62c";(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ChineseCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
+</style></head><body><header class="app-header"><button class="brand" data-action="nav" data-to="home"><span class="brand-mark" aria-hidden="true">✦</span>星岛语文</button><nav class="tabs" aria-label="主要页面"><button data-action="nav" data-to="home">今日任务</button><button data-action="nav" data-to="library">课本与字词</button><button data-action="nav" data-to="records">成长手记</button><button data-action="nav" data-to="settings">设置</button></nav><div class="save-status" id="save-status">本机记录</div></header><main id="main"><h1>正在打开星岛语文…</h1><p>请在 Safari 中打开安装网址。文件快速预览可能不运行互动程序。</p></main><div id="modal-root"></div><div id="toast" class="toast" role="status" hidden></div><input type="file" id="import-file" accept="application/json,.json" hidden><noscript>互动练习需要 JavaScript，请使用 Safari。</noscript><script>window.CHINESE_CACHE="star-chinese-72362621ac01";(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ChineseCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const VERSION=1, intervals=[1,3,7,14,30];
 const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2);
@@ -104,6 +104,7 @@ function makeEvent(s,item,active,result,answer='',today=day()){
  if(method==='text'&&result!=='unsure')result=norm(answer)?(compare(c.text,answer).match?'match':'partial'):'unsure';
  return {id:uid(),cardId:c.id,step:item.step||'',sessionId:active.id,day:today,at:Date.now(),method,result,phase:item.phase==='cold'&&item.startedDay===today&&!item.hints?'cold':'practice',hints:item.hints||0,answer:answer.slice(0,600),drawing:structuredClone(item.drawing||[]),seconds:Math.round(item.seconds||0),note:''};
 }
+function clearHistory(s){return {...empty(),prefs:structuredClone(s.prefs),cards:structuredClone(s.cards)};}
 function validate(x,{backup=false}={}){
  const fail=()=>{throw Error('文件不是有效的星岛语文记录，请保留原文件。');};
  if(!x||x.app!=='star-island-chinese'||x.version!==VERSION)fail();
@@ -136,7 +137,7 @@ function merge(current,incoming){
  for(const k of ['sessions','flags']){const seen=new Set(s[k].map(x=>x.id));for(const e of incoming[k])if(!seen.has(e.id)){s[k].push(k==='flags'?{...e,cardId:map.get(e.cardId)}:{...e});seen.add(e.id);}}
  s.events.sort((a,b)=>a.at-b.at);validate(s);return s;
 }
-return {VERSION,uid,day,validDay,gap,add,norm,compare,empty,identity,card,parseList,exposure,progress,plan,route,makeEvent,validate,merge};
+return {VERSION,uid,day,validDay,gap,add,norm,compare,empty,clearHistory,identity,card,parseList,exposure,progress,plan,route,makeEvent,validate,merge};
 });
 window.ChineseCourse={
  notice:'按上海五四学制六年级使用场景设计。尚未收到学校背诵范围；以下古诗为候选起步材料，字词为通用示例。请按老师要求启用、暂停或录入。',
@@ -166,6 +167,22 @@ window.ChineseCourse={
  },
  cards(key){return this.packs[key].cards.map(x=>ChineseCore.card({...x,source:'starter',known:false}));}
 };
+(function(root){
+'use strict';
+// Write the cleared state before removing an obsolete fallback copy. Never touch
+// another subject's storage, audio, service-worker cache or exported files.
+async function persist(next,{key,storage,writeDatabase}){
+ if(writeDatabase)await writeDatabase(next);
+ try{storage.setItem(key,JSON.stringify(next));return {complete:true,checkpoint:true};}
+ catch(error){
+  if(!writeDatabase)throw error;
+  try{storage.removeItem(key);return {complete:true,checkpoint:false};}
+  catch(e){return {complete:false,checkpoint:false};}
+ }
+}
+const api={persist};
+if(typeof module==='object'&&module.exports)module.exports=api;else root.IslandHistoryReset=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
 (async function(){
 'use strict';
 const C=window.ChineseCore,Course=window.ChineseCourse,$=id=>document.getElementById(id);
@@ -179,7 +196,7 @@ function tell(t){$('toast').textContent=t;$('toast').hidden=false;clearTimeout(t
 function status(){const e=$('save-status');if(e)e.textContent=!good?'请先导出备份':!checkpoint?'已保存 · 建议备份':'已保存在这台设备';if($('live-warning'))$('live-warning').hidden=good;}
 function writeDB(value){return new Promise((resolve,reject)=>{const tx=db.transaction('data','readwrite');tx.objectStore('data').put(value,'main');tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);});}
 function save(){
- if(recovery)return;s.savedAt=Math.max(Date.now(),s.savedAt+1);
+ if(recovery||resettingHistory)return;s.savedAt=Math.max(Date.now(),s.savedAt+1);
  try{localStorage.setItem(store,JSON.stringify(s));checkpoint=true;}catch(e){checkpoint=false;}
  if(db)writeDB(structuredClone(s)).then(()=>{good=true;status();}).catch(()=>{good=checkpoint;status();});else good=checkpoint;
  status();
@@ -302,8 +319,26 @@ function records(){
  const cold=s.events.filter(e=>e.phase==='cold'),typed=cold.filter(e=>e.method==='text'),self=cold.filter(e=>e.method==='self'),days=[...new Set(s.events.map(e=>e.day))].sort().slice(-14);
  return '<div class="row between"><div><div class="eyebrow">成长手记</div><h1>看看什么，正在留下来。</h1></div>'+B('导出学习摘要','export-summary')+'</div><div class="grid three"><section class="card"><div class="big-number">'+new Set(s.events.map(e=>e.day)).size+'</div><p>留下尝试的日子</p></section><section class="card"><div class="big-number">'+self.filter(e=>e.result==='match').length+' / '+self.length+'</div><p>首次回想 · 自核一致</p></section><section class="card"><div class="big-number">'+typed.filter(e=>e.result==='match').length+' / '+typed.length+'</div><p>首次回想 · 输入字词一致</p></section></div><p class="source-note">这两个比例不能互相替代，也不是语文成绩。自核来自孩子的判断；输入核对可能得到输入法帮助。</p><div class="lanterns">'+(days.length?days.map(d=>'<div class="lantern">✦<small>'+d.slice(5)+'</small></div>').join(''):'<p>每一个认真回想的日子，都可以亮一盏灯。休息不熄灯。</p>')+'</div><div class="subhead"><h2>跨日回访</h2>'+B('周末轻回顾','weekly')+'</div><div class="grid word-grid">'+s.cards.filter(c=>C.progress(s,c.id).seen).map(c=>{const p=C.progress(s,c.id);return '<section class="card"><span class="pill">'+p.label+'</span><h3 style="margin-top:14px">'+esc(c.kind==='word'?(c.clue||c.pinyin):c.title)+'</h3><p class="small">自核成功日期：'+(p.selfDays.join('、')||'尚无')+'<br>文本一致日期：'+(p.textDays.join('、')||'尚无')+'<br>下次回访：'+p.due+'</p>'+(p.repeated.length?'<p class="small">有 '+p.repeated.length+' 处文字差异重复出现，可以打开最近记录看看。</p>':'')+'</section>';}).join('')+'</div><p class="source-note">“跨日一致”需同一方式在至少 3 个不同日期成功，跨度至少 7 天；新的首次回想困难或学校需再练反馈会重新积累。这个观察门槛不是“已掌握”的结论。</p><div class="subhead"><h2>最近的尝试</h2>'+B('备份记录','export')+'</div><section class="card">'+s.events.slice(-30).reverse().map(e=>'<div class="history-row row between"><div><strong>'+esc(card(e.cardId)?.kind==='word'?(card(e.cardId).clue||card(e.cardId).pinyin):card(e.cardId)?.title)+'</strong><p class="small muted">'+e.day+' · '+eventLabel(e)+' · '+({match:'一致',partial:'需再练',unsure:'不确定'}[e.result])+(e.note?' · '+esc(e.note):'')+'</p></div>'+B('回看','review',D(e.id),'small')+'</div>').join('')+(!s.events.length?'<p>先做一次小任务，手记就会开始生长。</p>':'')+'</section>'+backupHint();
 }
+let resettingHistory=false;
+function historyResetCard(){return '<section class="card"><h2>测试与重新开始</h2><p>测试完成后，可清空本机语文学习历史，重新开始。</p><p class="small muted">保留：已加入的课文与字词、记忆线索、称呼和学习设置。其他学科和已导出的备份文件不受影响。</p>'+B('清空学习历史','reset-history','','danger')+'</section>';}
+function askHistoryReset(){
+ if(recovery){tell('旧记录暂时无法读取，请先导出恢复文件并恢复有效备份。');return;}
+ modal('清空本机语文学习历史？','<p>将清空 <b>'+s.events.length+' 条作答记录</b>、'+s.sessions.length+' 次任务记录，以及作答与错字记录、背诵默写结果、学校反馈、复习安排、学习时长、小灯进度、已看原文记录，以及未完成任务和草稿。</p><p><b>保留：</b>已加入的课文与字词、记忆线索、称呼和学习设置。</p><p>只影响当前设备、当前入口的星岛语文。请先关闭其他语文窗口。清空后不能直接撤销；需要保留时，请先导出备份。</p><div class="actions">'+B('取消','close','','primary')+B('先导出备份','export')+B('确认清空学习历史','confirm-reset-history','','danger')+'</div>');
+}
+async function resetHistory(){
+ if(resettingHistory||recovery)return;resettingHistory=true;
+ const next=C.clearHistory(s);next.savedAt=Math.max(Date.now(),(s.savedAt||0)+1);
+ const confirm=document.querySelector('[data-action="confirm-reset-history"]');if(confirm){confirm.disabled=true;confirm.textContent='正在清空…';}
+ try{
+  const result=await window.IslandHistoryReset.persist(next,{key:store,storage:{setItem:(k,v)=>localStorage.setItem(k,v),removeItem:k=>localStorage.removeItem(k)},writeDatabase:db?value=>writeDB(value):null});
+  s=next;lastSummary=null;lessonDraft=null;draftCards=null;importing=null;previewId=null;lastTick=Date.now();
+  good=result.complete;checkpoint=result.checkpoint;
+  close();nav('home');tell(result.complete?'本机语文学习历史已清空，可以重新开始。':'数据库历史已清空，但备用存储无法清理。请保留此页面，稍后重试。');
+ }catch(error){tell('暂未能清空，原学习历史仍保留。请检查本机存储后重试。');if(confirm){confirm.disabled=false;confirm.textContent='确认清空学习历史';}}
+ finally{resettingHistory=false;}
+}
 function settings(){
- return '<div class="eyebrow">照顾节奏，也照顾记录</div><h1>让书屋按你的步子走</h1><div class="grid two"><section class="card settings"><label for="nickname">岛上的称呼</label><input id="nickname" maxlength="12" value="'+esc(s.prefs.name)+'"><label for="minutes">每天的时间</label><select id="minutes"><option value="8" '+(s.prefs.minutes===8?'selected':'')+'>8 分钟 · 平日小路线</option><option value="5" '+(s.prefs.minutes===5?'selected':'')+'>5 分钟 · 忙碌日减量</option></select>'+B('记住这个节奏','prefs','','primary')+'<hr class="breakline"><h2>iPad 安装与离线</h2><p>在 Safari 打开安装网址 → 分享 → 添加到主屏幕。第一次保持联网，等待下方提示资源已备好，再断网重开验证。</p><p id="offline-status" class="tip">'+(offline?'离线资源已备好，可断网重开一次确认。':'正在检查离线资源；请从安装网址打开。')+'</p>'+B('检查离线资源','offline')+'<p class="source-note">系统朗读需要本机中文声音；缺少声音也可以看拼音与词义完成任务。离线不需要 AI。</p></section><section class="card"><h2>把记录留得更久</h2><p>练习、笔迹、学校原文保存在这台设备，不发送给服务器或 AI。Safari 和主屏幕入口的记录不一定共享；安装后请固定从主屏幕使用。</p><div class="actions">'+B('导出 JSON 备份','export','','primary')+B('合并备份','import')+'</div><p class="source-note">每周保存一次到 iPad“文件”。清除网站数据、更换设备或系统回收存储可能丢失本机记录。备份包含已提交作答与笔迹；未完成草稿仍留在当前设备。</p>'+B('请求保留本机存储','persist')+'<hr class="breakline"><h2>先看两周的变化</h2><p>每周只检查：常错字是否减少？隔天能否想起？她能否说出自己的记忆线索？不用每天陪练或重抄整页。</p><p class="small muted">三科学习总量请按当天作业调整。语文 8 分钟可替代当日重复抄写时间；忙碌时轮换，不必把三套任务全部叠加。</p></section><section class="card"><h2>内容范围</h2><p>'+Course.notice+'</p><p>现有古诗为公版作品，记忆提示为原创。未收录完整现代课文；学校需要的段落可本机录入。字词示例不代表孩子已经写错过这些词。</p><p><a href="https://www.pep.com.cn/" target="_blank" rel="noreferrer">人教社教材电子版入口 ↗</a></p></section><section class="card"><h2>这些记录能说明什么</h2><p>手写和口头背诵采用明确自核；文字核对检查漏字、多字和替换，标点单独提醒。没有自动字形、笔顺、发音或完整语文能力评分。</p><p class="small muted">间隔回想和反馈参考 <a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/1" target="_blank" rel="noreferrer">IES 学习指南</a>。每天分钟数、卡片量和跨日阈值是可调整的实践起点，不是个体诊断。</p><p class="small muted">如果学校反馈与自核长期不一致，周末选一张卡，请老师或家长核一次即可，据此调整任务难度。</p></section></div>';
+ return '<div class="eyebrow">照顾节奏，也照顾记录</div><h1>让书屋按你的步子走</h1><div class="grid two"><section class="card settings"><label for="nickname">岛上的称呼</label><input id="nickname" maxlength="12" value="'+esc(s.prefs.name)+'"><label for="minutes">每天的时间</label><select id="minutes"><option value="8" '+(s.prefs.minutes===8?'selected':'')+'>8 分钟 · 平日小路线</option><option value="5" '+(s.prefs.minutes===5?'selected':'')+'>5 分钟 · 忙碌日减量</option></select>'+B('记住这个节奏','prefs','','primary')+'<hr class="breakline"><h2>iPad 安装与离线</h2><p>在 Safari 打开安装网址 → 分享 → 添加到主屏幕。第一次保持联网，等待下方提示资源已备好，再断网重开验证。</p><p id="offline-status" class="tip">'+(offline?'离线资源已备好，可断网重开一次确认。':'正在检查离线资源；请从安装网址打开。')+'</p>'+B('检查离线资源','offline')+'<p class="source-note">系统朗读需要本机中文声音；缺少声音也可以看拼音与词义完成任务。离线不需要 AI。</p></section><section class="card"><h2>把记录留得更久</h2><p>练习、笔迹、学校原文保存在这台设备，不发送给服务器或 AI。Safari 和主屏幕入口的记录不一定共享；安装后请固定从主屏幕使用。</p><div class="actions">'+B('导出 JSON 备份','export','','primary')+B('合并备份','import')+'</div><p class="source-note">每周保存一次到 iPad“文件”。清除网站数据、更换设备或系统回收存储可能丢失本机记录。备份包含已提交作答与笔迹；未完成草稿仍留在当前设备。</p>'+B('请求保留本机存储','persist')+'<hr class="breakline"><h2>先看两周的变化</h2><p>每周只检查：常错字是否减少？隔天能否想起？她能否说出自己的记忆线索？不用每天陪练或重抄整页。</p><p class="small muted">三科学习总量请按当天作业调整。语文 8 分钟可替代当日重复抄写时间；忙碌时轮换，不必把三套任务全部叠加。</p></section>'+historyResetCard()+'<section class="card"><h2>内容范围</h2><p>'+Course.notice+'</p><p>现有古诗为公版作品，记忆提示为原创。未收录完整现代课文；学校需要的段落可本机录入。字词示例不代表孩子已经写错过这些词。</p><p><a href="https://www.pep.com.cn/" target="_blank" rel="noreferrer">人教社教材电子版入口 ↗</a></p></section><section class="card"><h2>这些记录能说明什么</h2><p>手写和口头背诵采用明确自核；文字核对检查漏字、多字和替换，标点单独提醒。没有自动字形、笔顺、发音或完整语文能力评分。</p><p class="small muted">间隔回想和反馈参考 <a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/1" target="_blank" rel="noreferrer">IES 学习指南</a>。每天分钟数、卡片量和跨日阈值是可调整的实践起点，不是个体诊断。</p><p class="small muted">如果学校反馈与自核长期不一致，周末选一张卡，请老师或家长核一次即可，据此调整任务难度。</p></section></div>';
 }
 function speak(id){
  const c=card(id);if(!c)return;
@@ -345,8 +380,9 @@ document.addEventListener('keydown',e=>{
  if(e.key==='Tab'&&$('modal-root').firstChild){const f=[...$('modal-root').querySelectorAll('button,input,textarea,select,a')].filter(x=>!x.disabled),first=f[0],last=f.at(-1);if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}
 });
 document.addEventListener('click',async ev=>{
- const el=ev.target.closest('[data-action]');if(!el||el.disabled)return;const d=el.dataset;
+ const el=ev.target.closest('[data-action]');if(!el||el.disabled||resettingHistory)return;const d=el.dataset;
  switch(d.action){
+ case 'reset-history':askHistoryReset();break;case 'confirm-reset-history':await resetHistory();break;
  case 'nav':close();nav(d.to);break;case 'close':close();break;
  case 'today-records':nav('records');break;
  case 'pack':{const seen=new Set(s.cards.map(C.identity));let n=0;for(const c of (d.pack==='all'?[...Course.cards('poem'),...Course.cards('word')]:Course.cards(d.pack))){if(!seen.has(C.identity(c))){s.cards.push(c);seen.add(C.identity(c));n++;}}save();nav('home');tell(n?'已加入 '+n+' 张卡，每天只练少量。':'这份起步包已经在书屋里了。');break;}

@@ -7,7 +7,7 @@
 @media print{.app-header,.actions,button,.keypad,.scratch,.footer-note{display:none!important}main{padding:0;max-width:none}.card{box-shadow:none;break-inside:avoid}body{background:white}.ledger{overflow:visible}.ledger table{min-width:0;font-size:11px}.modal-backdrop{position:static;background:white}.modal{max-height:none;width:100%;max-width:none;box-shadow:none}.hero{background:white}.grid{display:block}.card{margin-bottom:12px}}
 </style></head><body>
 <header class="app-header"><button class="brand" data-action="nav" data-to="home"><span class="brand-mark" aria-hidden="true">✦</span><span>星岛数学</span></button><nav class="tabs" aria-label="主要页面"><button data-action="nav" data-to="home" data-screen="home">今日探索</button><button data-action="nav" data-to="map" data-screen="map">小岛地图</button><button data-action="nav" data-to="garden" data-screen="garden">我的花园</button><button data-action="nav" data-to="records" data-screen="records">学习手记</button><button data-action="nav" data-to="settings" data-screen="settings">设置</button></nav><div class="save-status" id="save-status">记录保存在这台设备</div></header>
-<main id="main"><section class="card"><h1>正在打开星岛数学…</h1><p>如果这行一直不消失，请在 Safari 中打开安装网址。某些文件预览方式不会运行互动内容。</p></section></main><div id="modal-root"></div><div id="toast" class="toast" role="status" aria-live="polite" hidden></div><input type="file" id="import-file" accept=".json,application/json" hidden><noscript>星岛数学需要允许 JavaScript 才能完成互动与本机记录。请用 Safari 打开。</noscript><script>window.ISLAND_CACHE="star-island-8b08ff4c0f6e";
+<main id="main"><section class="card"><h1>正在打开星岛数学…</h1><p>如果这行一直不消失，请在 Safari 中打开安装网址。某些文件预览方式不会运行互动内容。</p></section></main><div id="modal-root"></div><div id="toast" class="toast" role="status" aria-live="polite" hidden></div><input type="file" id="import-file" accept=".json,application/json" hidden><noscript>星岛数学需要允许 JavaScript 才能完成互动与本机记录。请用 Safari 打开。</noscript><script>window.ISLAND_CACHE="star-island-9e4e223f087e";
 (function(root){
 'use strict';
 const VERSION=1, APP='star-island-math';
@@ -162,6 +162,7 @@ function plan(state,count=4,day=localDay()){
   return score(a)-score(b)||skillMap[a.skill].index-skillMap[b.skill].index;
  }).slice(0,count).map(s=>s.skill);
 }
+function clearHistory(state){return {...emptyState(),createdAt:state.createdAt,prefs:structuredClone(state.prefs)};}
 function validateImport(obj){
  if(!obj||obj.app!==APP||obj.version!==VERSION||!Array.isArray(obj.events)||obj.events.length>30000||!Array.isArray(obj.sessions)||obj.sessions.length>10000)throw Error('这不是可识别的星岛数学备份。');
  const events=obj.events.map(e=>{
@@ -177,8 +178,25 @@ function validateImport(obj){
  return {events,sessions,baselineDone:Array.isArray(obj.baselineDone)?obj.baselineDone.filter(x=>[0,1].includes(x)):[],prefs:{name:String(obj.prefs?.name||'小探索家').slice(0,12),minutes:[5,10,15].includes(obj.prefs?.minutes)?obj.prefs.minutes:10,enabled:Array.isArray(obj.prefs?.enabled)?obj.prefs.enabled.filter(x=>skillMap[x]):skills.map(s=>s.id)}};
 }
 function mergeImport(state,obj){const clean=validateImport(obj),byId=new Map(clean.events.map(e=>[e.id,e]));state.events.forEach(e=>byId.set(e.id,e));const ss=new Map(clean.sessions.map(s=>[s.id,s]));state.sessions.forEach(s=>ss.set(s.id,s));return {...state,events:[...byId.values()].sort((a,b)=>a.at.localeCompare(b.at)),sessions:[...ss.values()].sort((a,b)=>a.at.localeCompare(b.at)),baselineDone:[...new Set([...state.baselineDone,...clean.baselineDone])],prefs:state.events.length?state.prefs:{...state.prefs,...clean.prefs}};}
-const api={APP,VERSION,skills,skillMap,gcd,lcm,rat,add,sub,mul,div,fmt,parse,eq,makeQuestion,evaluate,evaluateField,expectedAnswers,localDay,plusDays,diffDays,emptyState,progress,plan,validateImport,mergeImport};
+const api={APP,VERSION,skills,skillMap,gcd,lcm,rat,add,sub,mul,div,fmt,parse,eq,makeQuestion,evaluate,evaluateField,expectedAnswers,localDay,plusDays,diffDays,emptyState,clearHistory,progress,plan,validateImport,mergeImport};
 if(typeof module==='object'&&module.exports)module.exports=api;else root.IslandCore=api;
+})(typeof globalThis!=='undefined'?globalThis:this);
+
+(function(root){
+'use strict';
+// Write the cleared state before removing an obsolete fallback copy. Never touch
+// another subject's storage, audio, service-worker cache or exported files.
+async function persist(next,{key,storage,writeDatabase}){
+ if(writeDatabase)await writeDatabase(next);
+ try{storage.setItem(key,JSON.stringify(next));return {complete:true,checkpoint:true};}
+ catch(error){
+  if(!writeDatabase)throw error;
+  try{storage.removeItem(key);return {complete:true,checkpoint:false};}
+  catch(e){return {complete:false,checkpoint:false};}
+ }
+}
+const api={persist};
+if(typeof module==='object'&&module.exports)module.exports=api;else root.IslandHistoryReset=api;
 })(typeof globalThis!=='undefined'?globalThis:this);
 
 (async()=>{
@@ -192,7 +210,7 @@ function dbRead(){return new Promise((resolve,reject)=>{const r=localDB.transact
 function dbWrite(value){return new Promise((resolve,reject)=>{const t=localDB.transaction('state','readwrite');t.objectStore('state').put(value,'main');t.oncomplete=resolve;t.onerror=()=>reject(t.error);t.onabort=()=>reject(t.error);});}
 function loadState(loaded){C.validateImport(loaded);state={...state,...loaded,prefs:{...state.prefs,...loaded.prefs}};}
 try{localDB=await openDatabase();localDB.onversionchange=()=>{localDB.close();localDB=null;storageOK=false;updateStatus();};const saved=await dbRead();if(saved){try{loadState(saved);}catch(e){recovery=JSON.stringify(saved);storageOK=false;}}else{let raw=null;try{raw=localStorage.getItem(KEY);}catch(e){}if(raw){try{loadState(JSON.parse(raw));await dbWrite(state);}catch(e){recovery=raw;storageOK=false;}}else await dbWrite(state);}}catch(e){localDB=null;storageKind='兼容存储';try{const raw=localStorage.getItem(KEY);if(raw){try{loadState(JSON.parse(raw));}catch(e){recovery=raw;storageOK=false;}}else{localStorage.setItem(KEY+':test','1');localStorage.removeItem(KEY+':test');}}catch(e){storageOK=false;}}
-function persist(){if(recovery)return false;if(localDB){pendingWrites++;updateStatus();try{dbWrite(state).then(()=>{pendingWrites--;storageOK=true;updateStatus();}).catch(()=>{pendingWrites--;storageOK=false;updateStatus();});return true;}catch(e){pendingWrites--;storageOK=false;updateStatus();return false;}}try{localStorage.setItem(KEY,JSON.stringify(state));storageOK=true;updateStatus();return true;}catch(e){storageOK=false;updateStatus();return false;}}
+function persist(){if(recovery||resettingHistory)return false;if(localDB){pendingWrites++;updateStatus();try{dbWrite(state).then(()=>{pendingWrites--;storageOK=true;updateStatus();}).catch(()=>{pendingWrites--;storageOK=false;updateStatus();});return true;}catch(e){pendingWrites--;storageOK=false;updateStatus();return false;}}try{localStorage.setItem(KEY,JSON.stringify(state));storageOK=true;updateStatus();return true;}catch(e){storageOK=false;updateStatus();return false;}}
 function updateStatus(){if($('save-status'))$('save-status').textContent=!storageOK?'记录暂未写入，请导出备份':pendingWrites?'正在保存…':'记录已保存在这台设备';if($('storage-alert'))$('storage-alert').hidden=storageOK;}
 function toast(text){$('toast').textContent=text;$('toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').hidden=true,4500);}
 function modal(title,body){$('modal-root').innerHTML=`<div class="modal-backdrop"><section class="modal" role="dialog" aria-modal="true" aria-label="${esc(title)}"><button class="quiet close" data-action="close-modal" aria-label="关闭">✕</button><h2>${esc(title)}</h2>${body}</section></div>`;setTimeout(()=>$('modal-root').querySelector('button')?.focus(),0);}
@@ -220,10 +238,28 @@ function gardenView(){const events=doneEvents(),seen=new Set(events.map(e=>e.ski
  return `<div class="eyebrow">小花园 · 看得见的积累</div><h1>每个发现，都长出一点新意</h1><p class="muted">探索过一个知识点，就种下一朵花。隔几天还能独立完成，它会变成暖黄色。</p><div class="garden"><svg viewBox="0 0 600 320" role="img" aria-label="已探索 ${seen.size} 个知识点，其中 ${stable.length} 个隔日也会"><path d="M0 150Q120 48 260 127T600 100V320H0Z" fill="#dae8d0"/><path d="M0 223Q121 170 268 202T600 180V320H0Z" fill="#c1d8b1"/><circle cx="509" cy="56" r="24" fill="#edcb79"/>${flowers}</svg></div><div class="scoreline"><div class="stat"><strong>${seen.size}</strong><span>已经探索的知识点</span></div><div class="stat"><strong>${stable.length}</strong><span>隔日也会</span></div><div class="stat"><strong>${state.sessions.length}</strong><span>完成或保存的探索</span></div></div><div class="grid badge-grid">${[['🌱','迈出第一步',events.length>=1],['🔍','会寻找线索',events.some(e=>e.hints>0&&e.finalCorrect)],['🪄','把订正做明白',events.some(e=>!e.firstCorrect&&e.finalCorrect)],['🌻','过几天还记得',stable.length>0]].map(([icon,t,ok])=>`<div class="badge ${ok?'earned':''}"><b>${icon}</b><strong>${t}</strong><br><span>${ok?'已经留下这个发现':'慢慢来，会遇到的'}</span></div>`).join('')}</div><div class="actions">${button('选一座岛继续探索','nav','data-to="map"','primary')}${button('看看以前的发现','nav','data-to="records"')}</div>`;}
 function recordsView(){const ev=doneEvents(),week=ev.filter(e=>e.phase!=='verify'&&C.diffDays(C.localDay(),e.day)<7&&C.diffDays(C.localDay(),e.day)>=0),ind=week.filter(e=>e.independent).length;return `<div class="row between"><div><div class="eyebrow">学习手记</div><h1>进步不只是一张分数表</h1></div>${button('保存备份','export','','secondary')}</div><div class="card"><div class="row between"><h2>最近 7 天</h2><span class="pill">只与自己的过去比较</span></div><div class="scoreline"><div class="stat"><strong>${week.length?`${ind}/${week.length}`:'—'}</strong><span>首次独立正确 / 已尝试</span></div><div class="stat"><strong>${week.filter(e=>!e.independent&&e.finalCorrect).length}</strong><span>借助反馈后完成</span></div><div class="stat"><strong>${C.skills.filter(s=>C.progress(state,s.id).stable).length}</strong><span>已观察到隔日保留</span></div></div><p class="small muted">已尝试包括“暂时不会”，不包括“还没学过”和当日换题验证；换题验证单独标记。使用提示后的首次答对，也单独记为借助反馈。上述数字不能换算成学校分数。</p></div><div class="subhead"><h2>知识点记录</h2>${button('导出给老师的摘要','summary-export','','quiet small')}</div><div class="card ledger"><table><thead><tr><th>知识点</th><th>首次独立</th><th>借助反馈完成</th><th>回访</th><th>状态</th></tr></thead><tbody>${C.skills.map(s=>{const p=C.progress(state,s.id);return `<tr><td>${s.name}</td><td>${p.independent}/${p.attempted}</td><td>${p.assisted}</td><td>${p.due||'尚未安排'}</td><td>${p.label}</td></tr>`;}).join('')}</tbody></table></div><div class="subhead"><h2>最近的题目</h2>${button('导出完整 CSV','csv','','quiet small')}</div>${state.events.length?`<div class="card ledger"><table><thead><tr><th>日期</th><th>题目</th><th>第一次</th><th>后来</th><th></th></tr></thead><tbody>${[...state.events].reverse().slice(0,60).map(e=>`<tr><td>${esc(e.day)}</td><td>${C.skillMap[e.skill].name}</td><td>${outcomeText(e)}</td><td>${e.finalCorrect?'已经完成':e.outcome==='unlearned'?'另行安排':'待回访'}</td><td>${button('回看','review-event',`data-id="${esc(e.id)}"`)}</td></tr>`).join('')}</tbody></table><p class="small muted">页面显示最近60题，导出包含全部记录。草稿只作回看，不自动判断手写过程。</p></div>`:`<div class="card empty"><h3>手记还没有开始</h3><p>做一题，这里就会留下第一条记录。</p>${button('去探索','nav','data-to="home"','primary')}</div>`}${backupReminder()}`;}
 function outcomeText(e){return e.outcome==='unlearned'?'还没学过':e.outcome==='unknown'?'暂时不会':e.phase==='verify'&&e.firstCorrect?'新题验证正确':e.independent?'独立正确':e.firstCorrect?'提示后答对':'需要再看一步';}
+let resettingHistory=false;
+function historyResetCard(){return '<section class="card"><h2>测试与重新开始</h2><p>测试完成后，可清空本机数学学习历史，重新开始。</p><p class="small muted">保留：题库、讲解、知识点选择、称呼和学习设置。其他学科和已导出的备份文件不受影响。</p>'+button('清空学习历史','reset-history','','danger')+'</section>';}
+function askHistoryReset(){
+ if(recovery){toast('旧记录暂时无法读取，请先导出恢复文件并恢复有效备份。');return;}
+ modal('清空本机数学学习历史？','<p>将清空 <b>'+state.events.length+' 条作答记录</b>、'+state.sessions.length+' 次任务记录，以及作答和错题记录、评测完成状态、复习进度、学习时长、花园进度、讲解阅读记录，以及未完成任务和草稿。</p><p><b>保留：</b>题库、讲解、知识点选择、称呼和学习设置。</p><p>只影响当前设备、当前入口的星岛数学。请先关闭其他数学窗口。清空后不能直接撤销；需要保留时，请先导出备份。</p><div class="actions">'+button('取消','close-modal','','primary')+button('先导出备份','export')+button('确认清空学习历史','confirm-reset-history','','danger')+'</div>');
+}
+async function resetHistory(){
+ if(resettingHistory||recovery)return;resettingHistory=true;
+ const next=C.clearHistory(state);next.savedAt=Math.max(Date.now(),(state.savedAt||0)+1);
+ const confirm=document.querySelector('[data-action="confirm-reset-history"]');if(confirm){confirm.disabled=true;confirm.textContent='正在清空…';}
+ try{
+  const result=await window.IslandHistoryReset.persist(next,{key:KEY,storage:{setItem:(k,v)=>localStorage.setItem(k,v),removeItem:k=>localStorage.removeItem(k)},writeDatabase:localDB?value=>dbWrite(value):null});
+  state=next;lastReport=null;importCandidate=null;focusField=null;selectedSkill=null;lastTick=Date.now();
+  storageOK=result.complete;
+  closeModal();nav('home');toast(result.complete?'本机数学学习历史已清空，可以重新开始。':'数据库历史已清空，但备用存储无法清理。请保留此页面，稍后重试。');
+ }catch(error){toast('暂未能清空，原学习历史仍保留。请检查本机存储后重试。');if(confirm){confirm.disabled=false;confirm.textContent='确认清空学习历史';}}
+ finally{resettingHistory=false;}
+}
 function settingsView(){return `<div class="eyebrow">我的小设置</div><h1>按自己的节奏学习</h1><div class="grid two"><section class="card settings"><label for="nickname">在岛上怎么称呼你</label><input id="nickname" maxlength="12" value="${esc(state.prefs.name)}" autocomplete="off"><label for="minutes" style="margin-top:20px">一次大约用多久</label><select id="minutes">${[5,10,15].map(x=>`<option value="${x}" ${x===state.prefs.minutes?'selected':''}>${x} 分钟${x===5?' · 轻松回顾':''}</option>`).join('')}</select><p class="small muted" style="margin-top:10px">到时间会建议休息，不会扣分，也不会把未完成题算错。</p>${button('保存设置','save-prefs','','primary')}<hr class="breakline"><h3>我已经学过这些</h3><p class="small muted">取消后暂不放入每日路线；想试的时候仍可从地图进入。</p>${C.skills.map(s=>`<label class="toggle"><input type="checkbox" data-enabled="${s.id}" ${state.prefs.enabled.includes(s.id)?'checked':''}>${s.name}</label>`).join('')}</section>
  <div class="grid"><section class="card"><h2>安装与离线</h2><p id="offline-status">${offlineText()}</p><ol class="mini-list"><li>在 iPad Safari 打开这个网址。</li><li>点“分享”→“添加到主屏幕”；若出现“作为网页 App 打开”，将它开启。</li><li>从主屏幕图标进入，等待“离线资源已备好”。</li><li>试着断网后重新打开，确认可以进入并做题。</li></ol><div class="actions">${button('检查离线准备','offline-check')}${button('申请保留本机数据','persist-data')}</div><p class="small muted">首次安装和更新需要联网。学习内容和记录保存在本机；系统清理、删除网站数据或更换网址可能影响记录，请定期导出。</p></section>
  <section class="card"><h2>让记录能带走</h2><p>备份保存到“文件”。恢复时会合并题目记录，重复记录不会再算一次。备份不恢复进行到一半的会话。</p><div class="actions">${button('导出备份','export','','secondary')}${button('导入并合并','import')}</div><div class="actions">${button('导出答题明细 CSV','csv')}${button('导出学习摘要','summary-export')}</div><p class="small muted">当前使用：${storageKind}。最近确认备份：${state.backupAt||'尚未确认'}。Safari 与主屏幕 App 的记录可能分开，建议固定从主屏幕进入。</p></section>
- <section class="card"><h2>给家长的说明</h2><p class="small">自动完成出题、结果判分、分步提示、换题验证与间隔复习。孩子输入的结果和理由选项可以核验；手写过程和口头解释仍不能完整测量。连续两次新题仍困难时，可把学习摘要交给老师做针对性诊断。</p><p class="small">16 个知识点取自本次评估，初始评测为报告复测题的交互改编。计算采用精确分数核验。练习没有实时 AI 依赖，离线讲解经过数学复核。</p><p class="small muted">版本 1.0 · 无账号、无广告、无排行榜。所有儿童作答留在设备中。</p></section></div></div>`;}
+${historyResetCard()} <section class="card"><h2>给家长的说明</h2><p class="small">自动完成出题、结果判分、分步提示、换题验证与间隔复习。孩子输入的结果和理由选项可以核验；手写过程和口头解释仍不能完整测量。连续两次新题仍困难时，可把学习摘要交给老师做针对性诊断。</p><p class="small">16 个知识点取自本次评估，初始评测为报告复测题的交互改编。计算采用精确分数核验。练习没有实时 AI 依赖，离线讲解经过数学复核。</p><p class="small muted">版本 1.0 · 无账号、无广告、无排行榜。所有儿童作答留在设备中。</p></section></div></div>`;}
 function offlineText(){if(location.protocol==='file:')return '这是单文件本地版。要添加到 iPad 主屏幕，请使用 HTTPS 安装网址；本地文件的存储能力由打开它的 App 决定。';return offlineReady?'离线资源已备好。建议实际断网再打开一次确认。':swMessage||'正在准备离线资源…';}
 function freshItem(skill,phase='practice',baseline=false){if(phase!=='baseline'&&state.lessonReads.some(x=>x.skill===skill&&x.day===C.localDay()))phase='verify';let seed=1,q;const past=state.events.filter(e=>e.skill===skill).slice(-4).map(e=>C.makeQuestion(e.skill,e.seed,e.baseline).prompt),activeQ=question();if(activeQ?.skill===skill)past.push(activeQ.prompt);for(let k=0;k<50;k++){seed=Math.floor(Math.random()*2000000000)+1;q=C.makeQuestion(skill,seed,baseline);if(baseline||!past.includes(q.prompt))break;}return {id:uid(),skill,seed,baseline,phase,draft:{},drawing:[],hints:0,tries:0,eventId:null,feedback:null,seconds:0,finished:false};}
 function requestStart(type,ids,part=null){if(state.active){modal('上次探索还在这里',`<p>先继续，或者把已经做过的部分保存下来，再开始新的路线。</p><div class="actions">${button('继续上次','resume','','primary')}${button('保存并结束上次','finish-partial')}</div>`);return;}if(!ids.length){toast('先在设置里选择已经学过的知识点。');return;}
@@ -286,8 +322,9 @@ document.addEventListener('focusin',e=>{if(e.target.dataset.answer){focusField=e
 document.addEventListener('change',e=>{if(e.target.dataset.enabled){const id=e.target.dataset.enabled;state.prefs.enabled=e.target.checked?[...new Set([...state.prefs.enabled,id])]:state.prefs.enabled.filter(x=>x!==id);persist();}});
 document.addEventListener('pointerdown',e=>{if(e.target.closest('[data-action="key"]'))e.preventDefault();});
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal();if(e.key==='Enter'&&e.target.dataset.answer){e.preventDefault();check();}});
-document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b||b.disabled)return;const d=b.dataset;
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-action]');if(!b||b.disabled||resettingHistory)return;const d=b.dataset;
  switch(d.action){
+ case 'reset-history':askHistoryReset();break;case 'confirm-reset-history':await resetHistory();break;
  case 'nav':nav(d.to);break;case 'close-modal':closeModal();break;case 'baseline':closeModal();startBaseline(+d.part);break;
  case 'daily':requestStart('daily',C.plan(state,state.prefs.minutes===5?2:state.prefs.minutes===15?5:4));break;
  case 'practice':if(screen==='lab')markLesson(d.skill);closeModal();requestStart('practice',[d.skill]);break;
