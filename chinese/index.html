@@ -10,7 +10,9 @@
 @media(max-width:650px){.hero-art{height:150px}.session-head{flex-wrap:wrap}.session-head .meta{min-width:50%}.poem{font-size:25px}.text-answer{font-size:21px}.tabs button{font-size:12px;padding:7px 8px}}
 .lesson-intro{max-width:900px;margin:20px auto}.mission-map{list-style:none;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0}.mission-map li{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:15px;background:#f3ede2;padding:14px 12px}.mission-map li>span{width:27px;height:27px;flex-shrink:0;border-radius:50%;display:grid;place-items:center;background:#e5d4bd;font-size:14px}.mission-map li.current{background:#f5dfc9;border-color:#b37a56}.mission-map li.complete{background:#e9eee0}.mission-map b{display:block;font-size:14px}.mission-map small{display:block;font-size:12px;color:var(--muted)}.lesson-agenda>div,.lesson-results>div{display:flex;align-items:start;gap:15px;border-bottom:1px solid var(--line);padding:18px 0}.lesson-agenda>div:last-child,.lesson-results>div:last-child{border:0}.lesson-agenda>div>span,.lesson-results>div>span{width:34px;height:34px;border-radius:11px;background:#eddbc3;display:grid;place-items:center;flex-shrink:0;font-weight:700}.lesson-agenda section,.lesson-results section{flex:1;min-width:0}.lesson-agenda h3,.lesson-results h3{margin-bottom:6px}.lesson-agenda p,.lesson-results p{margin-bottom:3px}.lesson-agenda>div>small{color:var(--muted);font-size:12px;white-space:nowrap}.finish-rule{padding:18px;border-radius:16px;background:#f5ead6;margin-top:18px}.task-command{background:#f5e5d1;border-radius:16px;padding:20px;margin-bottom:22px}.task-command>span{font-size:13px;color:var(--teal);display:block;margin-bottom:7px}.task-command h2{font-size:27px;margin-bottom:8px}.task-command p{margin:0;font-size:16px}.prompt-box,.assigned-passage{border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:16px 0}.prompt-box .pinyin{font-size:32px;margin:8px 0}.assigned-passage h3{font-size:24px}.assigned-passage p{margin:0}.instruction-example{background:#f2eade;border-radius:16px;padding:18px;margin:15px 0}.instruction-example small{display:block;color:var(--muted)}.instruction-example strong{font-size:21px;display:block;margin:5px 0}.instruction-example p{font-size:15px;margin-bottom:0}.clear-steps{padding-left:24px}.clear-steps li{padding:5px 0}.lesson-intro .actions .primary{font-size:19px}.question-card .actions{margin-top:22px}.question-card .feedback+.actions{margin-top:22px}[hidden]{display:none!important}
 @media(max-width:900px){.mission-map{gap:7px}.mission-map li{padding:11px 8px;gap:7px}.mission-map b{font-size:13px}.mission-map li>span{width:24px;height:24px}.lesson-agenda>div{flex-wrap:wrap}.lesson-agenda>div>small{margin-left:49px}}@media(max-width:650px){.mission-map{grid-template-columns:repeat(2,1fr)}.task-command h2{font-size:23px}.task-command{padding:17px}.assigned-passage h3{font-size:21px}.lesson-intro .actions .primary{font-size:17px}}
-</style></head><body><header class="app-header"><button class="brand" data-action="nav" data-to="home"><span class="brand-mark" aria-hidden="true">✦</span>星岛语文</button><nav class="tabs" aria-label="主要页面"><button data-action="nav" data-to="home">今日任务</button><button data-action="nav" data-to="library">课本与字词</button><button data-action="nav" data-to="records">成长手记</button><button data-action="nav" data-to="settings">设置</button></nav><div class="save-status" id="save-status">本机记录</div></header><main id="main"><h1>正在打开星岛语文…</h1><p>请在 Safari 中打开安装网址。文件快速预览可能不运行互动程序。</p></main><div id="modal-root"></div><div id="toast" class="toast" role="status" hidden></div><input type="file" id="import-file" accept="application/json,.json" hidden><noscript>互动练习需要 JavaScript，请使用 Safari。</noscript><script>window.CHINESE_CACHE="star-chinese-72362621ac01";(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ChineseCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
+/* Source-first course flow: no card-authoring form. */
+.source-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}.source-steps>div{padding:20px;border-radius:18px;background:#f6f0e3}.source-steps p{margin-bottom:0}.source-picker{margin:22px 0}.source-picker select{max-width:100%}.photo-generator{margin-top:24px}.photo-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin:22px 0}.photo-grid figure{margin:0;background:#f5efe3;border-radius:14px;overflow:hidden}.photo-grid img{display:block;width:100%;height:210px;object-fit:contain;background:#eee8df}.photo-grid figcaption{padding:8px;text-align:center}.photo-generator .settings{max-width:540px}.photo-generator [role=status]{min-height:24px;color:#665139}.photo-generator .error-text{white-space:normal}.source-picker h2{margin-top:8px}@media(max-width:760px){.source-steps{grid-template-columns:1fr}.photo-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.source-picker select{font-size:16px}}
+</style></head><body><header class="app-header"><button class="brand" data-action="nav" data-to="home"><span class="brand-mark" aria-hidden="true">✦</span>星岛语文</button><nav class="tabs" aria-label="主要页面"><button data-action="nav" data-to="home">今日任务</button><button data-action="nav" data-to="library">课本与字词</button><button data-action="nav" data-to="records">成长手记</button><button data-action="nav" data-to="settings">设置</button></nav><div class="save-status" id="save-status">本机记录</div></header><main id="main"><h1>正在打开星岛语文…</h1><p>请在 Safari 中打开安装网址。文件快速预览可能不运行互动程序。</p></main><div id="modal-root"></div><div id="toast" class="toast" role="status" hidden></div><input type="file" id="import-file" accept="application/json,.json" hidden><noscript>互动练习需要 JavaScript，请使用 Safari。</noscript><script>window.CHINESE_CACHE="star-chinese-522973f76176";(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.ChineseCore=factory();})(typeof globalThis!=='undefined'?globalThis:this,function(){
 'use strict';
 const VERSION=1, intervals=[1,3,7,14,30];
 const uid=()=>globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+Math.random().toString(36).slice(2);
@@ -30,7 +32,7 @@ function compare(expected,actual){
  while(i||j){if(i&&j&&dp[i][j]===dp[i-1][j-1]+(a[i-1]===b[j-1]?0:1)){ops.push({type:a[i-1]===b[j-1]?'same':'replace',expected:a[--i],actual:b[--j]});}else if(i&&dp[i][j]===dp[i-1][j]+1){ops.push({type:'missing',expected:a[--i],actual:''});}else{ops.push({type:'extra',expected:'',actual:b[--j]});}}
  return {match:dp[a.length][b.length]===0,distance:dp[a.length][b.length],punctuation:punct(expected)===punct(actual),ops:ops.reverse()};
 }
-function empty(){return {app:'star-island-chinese',version:VERSION,savedAt:0,cards:[],events:[],sessions:[],exposures:[],flags:[],active:null,prefs:{name:'小探索家',minutes:8,penOnly:false},backupAt:null};}
+function empty(){return {app:'star-island-chinese',version:VERSION,savedAt:0,sources:[],cards:[],events:[],sessions:[],exposures:[],flags:[],active:null,prefs:{name:'小探索家',minutes:8,penOnly:false},backupAt:null};}
 const identity=c=>c.kind+'|'+norm(c.text);
 function card(fields){
  const kind=fields.kind;
@@ -72,7 +74,8 @@ function progress(s,id,today=day()){
  return {seen:ev.length>0,due,overdue:due!==null&&due<=today,cold,latest,flagged:!!flag&&(!anchor||flag.at>=anchor.at),textDays,selfDays,textSteady:steady(textDays),selfSteady:steady(selfDays),repeated:Object.entries(mistakes).filter(([,n])=>n>=2),fails:cold.filter(e=>e.result!=='match').length,label:steady(textDays)?'跨日文本一致':steady(selfDays)?'跨日自核一致':cold.length?'正在积累跨日回想':ev.length?'等待隔日回想':'待初次探索'};
 }
 function plan(s,today=day(),weekly=false){
- const enabled=s.cards.filter(c=>c.enabled),used=new Set(s.events.filter(e=>e.day===today).map(e=>e.cardId));
+ const source=(s.sources||[]).find(x=>x.id===s.prefs.sourceId),scope=source?new Set(source.items.filter(x=>(!s.prefs.sourceImage||x.image===s.prefs.sourceImage)&&(!s.prefs.sourceMode||s.prefs.sourceMode==='both'||s.cards.find(c=>c.id===x.cardId)?.kind===s.prefs.sourceMode)).map(x=>x.cardId)):null;
+ const enabled=s.cards.filter(c=>c.enabled&&(!scope||scope.has(c.id))),used=new Set(s.events.filter(e=>e.day===today).map(e=>e.cardId));
  const recent=s.events.filter(e=>e.phase==='cold').slice(-3),weak=recent.length===3&&recent.filter(e=>e.result!=='match').length>=2;
  const newToday=new Set(s.events.filter(e=>e.day===today&&!s.events.some(x=>x.cardId===e.cardId&&x.day<today)).map(e=>e.cardId));
  const selected=[],newKind={word:0,recite:0};
@@ -104,7 +107,7 @@ function makeEvent(s,item,active,result,answer='',today=day()){
  if(method==='text'&&result!=='unsure')result=norm(answer)?(compare(c.text,answer).match?'match':'partial'):'unsure';
  return {id:uid(),cardId:c.id,step:item.step||'',sessionId:active.id,day:today,at:Date.now(),method,result,phase:item.phase==='cold'&&item.startedDay===today&&!item.hints?'cold':'practice',hints:item.hints||0,answer:answer.slice(0,600),drawing:structuredClone(item.drawing||[]),seconds:Math.round(item.seconds||0),note:''};
 }
-function clearHistory(s){return {...empty(),prefs:structuredClone(s.prefs),cards:structuredClone(s.cards)};}
+function clearHistory(s){return {...empty(),prefs:structuredClone(s.prefs),cards:structuredClone(s.cards),sources:structuredClone(s.sources||[])};}
 function validate(x,{backup=false}={}){
  const fail=()=>{throw Error('文件不是有效的星岛语文记录，请保留原文件。');};
  if(!x||x.app!=='star-island-chinese'||x.version!==VERSION)fail();
@@ -113,6 +116,15 @@ function validate(x,{backup=false}={}){
  const ids=new Set(),eid=new Set(),str=(v,max)=>typeof v==='string'&&v.length<=max;
  const drawing=d=>Array.isArray(d)&&d.length<=400&&d.every(st=>Array.isArray(st)&&st.length<=1200&&st.every(p=>Array.isArray(p)&&p.length===2&&p.every(n=>typeof n==='number'&&Number.isFinite(n)&&n>=0&&n<=1)));
  for(const c of x.cards){if(!str(c.id,100)||ids.has(c.id)||!str(c.text,400)||!validDay(c.created)||typeof c.enabled!=='boolean'||typeof c.known!=='boolean')fail();ids.add(c.id);card(c);for(const [k,m]of [['title',100],['pinyin',80],['clue',160],['tip',240]])if(!str(c[k],m))fail();}
+ if(x.sources!==undefined){
+  if(!Array.isArray(x.sources)||x.sources.length>500)fail();
+  const sourceIDs=new Set();
+  for(const source of x.sources){
+   if(!source||!str(source.id,100)||sourceIDs.has(source.id)||!str(source.title,100)||!Array.isArray(source.pages)||!source.pages.length||source.pages.length>4||!Array.isArray(source.items)||source.items.length>100)fail();sourceIDs.add(source.id);
+   for(const p of source.pages)if(!Number.isInteger(p.image)||p.image<1||p.image>4||p.page!==null&&(!Number.isInteger(p.page)||p.page<1||p.page>999)||!str(p.lesson,80)||!str(p.assignment,300))fail();
+   for(const it of source.items)if(!ids.has(it.cardId)||!source.pages.some(p=>p.image===it.image&&p.page===it.page&&p.lesson===it.lesson))fail();
+  }
+ }
  const stamp=e=>validDay(e.day)&&e.day<=day()&&Number.isFinite(e.at)&&e.at>0&&e.at<=Date.now()+86400000;
  for(const e of x.events){
   if(!ids.has(e.cardId)||e.step!==undefined&&!['','words','recite','dictate','repair'].includes(e.step)||!str(e.id,100)||eid.has(e.id)||!str(e.sessionId,100)||!stamp(e)||!['text','self'].includes(e.method)||e.selfMode!==undefined&&!['say','write'].includes(e.selfMode)||!['match','partial','unsure'].includes(e.result)||!['cold','practice'].includes(e.phase)||!Number.isInteger(e.hints)||e.hints<0||e.hints>3||e.phase==='cold'&&e.hints!==0||!str(e.answer,600)||!str(e.note,160)||!Number.isFinite(e.seconds)||e.seconds<0||!drawing(e.drawing))fail();
@@ -131,6 +143,11 @@ function validate(x,{backup=false}={}){
 function merge(current,incoming){
  validate(incoming,{backup:true});const s=structuredClone(current),map=new Map(),byKey=new Map(s.cards.map(c=>[identity(c),c]));
  for(const c of incoming.cards){let found=byKey.get(identity(c));if(!found){found={...c,id:s.cards.some(k=>k.id===c.id)?uid():c.id};s.cards.push(found);byKey.set(identity(c),found);}map.set(c.id,found.id);}
+ s.sources=s.sources||[];
+ for(const source of incoming.sources||[]){
+  const mapped={...source,items:source.items.map(it=>({...it,cardId:map.get(it.cardId)}))},old=s.sources.find(x=>x.id===mapped.id);
+  if(!old)s.sources.push(mapped);else for(const it of mapped.items)if(!old.items.some(x=>x.cardId===it.cardId&&x.image===it.image))old.items.push(it);
+ }
  const eventIDs=new Set(s.events.map(e=>e.id));
  for(const e of incoming.events){if(eventIDs.has(e.id)){const old=s.events.find(x=>x.id===e.id);if(old.cardId!==map.get(e.cardId)||old.answer!==e.answer||old.at!==e.at)throw Error('发现同编号但内容不同的记录，合并已取消。');continue;}s.events.push({...e,cardId:map.get(e.cardId)});eventIDs.add(e.id);}
  for(const e of incoming.exposures){const f={...e,cardId:map.get(e.cardId)};if(!s.exposures.some(x=>x.cardId===f.cardId&&x.day===f.day))s.exposures.push(f);}
@@ -167,6 +184,40 @@ window.ChineseCourse={
  },
  cards(key){return this.packs[key].cards.map(x=>ChineseCore.card({...x,source:'starter',known:false}));}
 };
+(function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory(require('./core.js'));else root.ChineseGeneration=factory(root.ChineseCore);})(typeof globalThis!=='undefined'?globalThis:this,function(C){
+'use strict';
+const API='https://star-island-chinese-ai.onrender.com';
+function validateSource(source){
+ if(!source||typeof source.id!=='string'||!/^src-[a-f0-9]{24}$/.test(source.id)||typeof source.title!=='string'||source.title.length>100||!Array.isArray(source.pages)||source.pages.length<1||source.pages.length>4)throw Error('课文来源信息不完整，请重新生成。');
+ const seen=new Set();for(const p of source.pages){if(!Number.isInteger(p.image)||p.image<1||p.image>source.pages.length||seen.has(p.image)||p.page!==null&&(!Number.isInteger(p.page)||p.page<1||p.page>999)||typeof p.lesson!=='string'||p.lesson.length>80||typeof p.assignment!=='string'||p.assignment.length>300)throw Error('照片页码信息不完整。');seen.add(p.image);}
+ return source;
+}
+function accept(current,batch){
+ if(batch?.schema!==1||!Array.isArray(batch.cards)||!batch.cards.length||batch.cards.length>24)throw Error('生成结果不完整，请重新生成。');
+ validateSource(batch.source);
+ const next=structuredClone(current),byKey=new Map(next.cards.map(c=>[C.identity(c),c])),items=[];
+ for(const raw of batch.cards){
+  const p=batch.source.pages.find(p=>p.image===raw.origin?.image);
+  if(!p||raw.origin?.sourceId!==batch.source.id||raw.origin.page!==p.page||raw.origin.lesson!==p.lesson)throw Error('任务与照片页码对不上，请重新生成。');
+  const c=C.card({...raw,created:C.day(),source:'school',known:false});
+  let found=byKey.get(C.identity(c));if(!found){c.id=next.cards.some(x=>x.id===c.id)?C.uid():c.id;next.cards.push(c);found=c;byKey.set(C.identity(c),c);}
+  found.enabled=true;found.title=c.title;found.source='school';items.push({cardId:found.id,image:p.image,page:p.page,lesson:p.lesson});
+ }
+ next.sources=next.sources||[];
+ const source={id:batch.source.id,title:batch.source.title,pages:batch.source.pages,model:String(batch.source.model||'').slice(0,60),createdAt:Number(batch.source.createdAt)||Date.now(),items};
+ const old=next.sources.findIndex(x=>x.id===source.id);
+ if(old>=0){const keys=new Set(items.map(x=>x.cardId+'|'+x.image));source.items.push(...next.sources[old].items.filter(x=>batch.source.mode!=='both'&&next.cards.find(c=>c.id===x.cardId)?.kind!==batch.source.mode&&!keys.has(x.cardId+'|'+x.image)));next.sources[old]=source;}else next.sources.push(source);
+ for(const it of items)if(!next.exposures.some(x=>x.cardId===it.cardId&&x.day===C.day()))next.exposures.push({cardId:it.cardId,day:C.day()});
+ next.prefs.sourceId=source.id;next.prefs.sourceImage=0;next.prefs.sourceMode='both';
+ C.validate(next);return next;
+}
+function scope(s){
+ const source=(s.sources||[]).find(x=>x.id===s.prefs.sourceId);if(!source)return [];
+ return [...new Set(source.items.filter(x=>(!s.prefs.sourceImage||x.image===s.prefs.sourceImage)&&(s.prefs.sourceMode==='both'||!s.prefs.sourceMode||s.cards.find(c=>c.id===x.cardId)?.kind===s.prefs.sourceMode)).map(x=>x.cardId))];
+}
+function label(s){const x=(s.sources||[]).find(x=>x.id===s.prefs.sourceId);if(!x)return '尚未选择课文照片';const p=x.pages.find(p=>p.image===s.prefs.sourceImage);return x.title+(p?' · '+(p.page?'第 '+p.page+' 页':'照片 '+p.image):' · 全部已拍页');}
+return {API,validateSource,accept,scope,label};
+});
 (function(root){
 'use strict';
 // Write the cleared state before removing an obsolete fallback copy. Never touch
@@ -185,7 +236,7 @@ if(typeof module==='object'&&module.exports)module.exports=api;else root.IslandH
 })(typeof globalThis!=='undefined'?globalThis:this);
 (async function(){
 'use strict';
-const C=window.ChineseCore,Course=window.ChineseCourse,$=id=>document.getElementById(id);
+const C=window.ChineseCore,G=window.ChineseGeneration,Course=window.ChineseCourse,$=id=>document.getElementById(id);
 const esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const B=(label,action,data='',cls='')=>'<button data-action="'+action+'" class="'+cls+'" '+data+'>'+label+'</button>';
 const D=id=>'data-id="'+esc(id)+'"';
@@ -227,36 +278,105 @@ function missionMap(a){
  return '<ol class="mission-map" aria-label="今日任务步骤">'+order.map((key,i)=>{const group=a.queue.filter(x=>stepOf(x)===key),done=group.filter(x=>x.eventId).length;return '<li class="'+(key===cur?'current':group.length&&done===group.length?'complete':'')+'" '+(key===cur?'aria-current="step"':'')+'><span>'+(i+1)+'</span><div><b>'+stepNames[key]+'</b><small>'+(key==='repair'?(a.type==='daily'?'最多 1 处':'本轮不追加'):group.length?done+' / '+group.length+' 项':'本轮未安排')+'</small></div></li>';}).join('')+'</ol>';
 }
 function planLesson(ids,type='daily'){
- if(s.active){start(ids,type);return;}if(!ids.length){tell('今天已练完可安排的内容，或还没有启用任务。请到“课本与字词”检查。');return;}
+ if(s.active){start(ids,type);return;}if(!ids.length){tell('今天已练完可安排的内容，或还没有启用任务。可换课文、页码或练习类型；已经练过的内容会按日期回访。');return;}
  lessonDraft={ids,type};nav('briefing');
 }
 function routeCards(ids,type='daily'){
  const queue=C.route(s,ids,type),counts=lessonCounts(queue),poem=ids.map(card).find(c=>c.kind==='recite');
- return '<div class="lesson-agenda"><div><span>1</span><section><h3>字词默写 · '+counts.words+' 个词</h3><p>看拼音，写汉字，再逐字核对。'+(counts.words?'先写完这组词，再进入背诵。':'本轮未安排；可在课本与字词中加入。')+'</p></section><small>约 2 分钟</small></div><div><span>2</span><section><h3>开口背诵 · '+counts.recite+' 小段</h3><p>'+esc(poem?.title||'本轮没有安排背诵篇目')+'</p><p class="small muted">'+(counts.recite?'先读顺，再合上背出来。不是回答阅读问题。':'本轮跳过开口背诵。')+'</p></section><small>约 2 分钟</small></div><div><span>3</span><section><h3>遮住原文默写 · '+counts.dictate+' 小段</h3><p>'+(counts.dictate?(type==='weekly'?'这次先默写，再打开原文，看看隔天是否还记得。':'默写刚才背过的同一小段，共 '+[...C.norm(poem.text)].length+' 字。'):'本轮未安排整段默写。')+'</p></section><small>约 3 分钟</small></div><div><span>4</span><section><h3>错处回访 · '+(type==='daily'?'最多 1 处':'本轮不追加')+'</h3><p>'+(type==='daily'?'如果有错，选一处遮住再写；没有错就直接收好记录。':'先把本次回想结果记下来，需再练的内容留到下次。')+'</p></section><small>约 1 分钟</small></div></div>';
+ return '<div class="lesson-agenda"><div><span>1</span><section><h3>字词默写 · '+counts.words+' 个词</h3><p>看拼音，写汉字，再逐字核对。'+(counts.words?'先写完这组词，再进入背诵。':'本次范围没有字词任务，跳过这一步。')+'</p></section><small>约 2 分钟</small></div><div><span>2</span><section><h3>开口背诵 · '+counts.recite+' 小段</h3><p>'+esc(poem?.title||'本轮没有安排背诵篇目')+'</p><p class="small muted">'+(counts.recite?'先读顺，再合上背出来。不是回答阅读问题。':'本轮跳过开口背诵。')+'</p></section><small>约 2 分钟</small></div><div><span>3</span><section><h3>遮住原文默写 · '+counts.dictate+' 小段</h3><p>'+(counts.dictate?(type==='weekly'?'这次先默写，再打开原文，看看隔天是否还记得。':'默写刚才背过的同一小段，共 '+[...C.norm(poem.text)].length+' 字。'):'本轮未安排整段默写。')+'</p></section><small>约 3 分钟</small></div><div><span>4</span><section><h3>错处回访 · '+(type==='daily'?'最多 1 处':'本轮不追加')+'</h3><p>'+(type==='daily'?'如果有错，选一处遮住再写；没有错就直接收好记录。':'先把本次回想结果记下来，需再练的内容留到下次。')+'</p></section><small>约 1 分钟</small></div></div>';
 }
 function briefing(){
  if(!lessonDraft)return home();const p=lessonDraft,counts=lessonCounts(C.route(s,p.ids,p.type));
  return '<section class="card lesson-intro"><div class="eyebrow">今天的任务单 · '+(p.type==='weekly'?'周末回顾':'约 '+s.prefs.minutes+' 分钟')+'</div><h1>先看任务，再一步一步做。</h1>'+routeCards(p.ids,p.type)+'<div class="finish-rule"><h3>做到什么就完成？</h3><p>每项都<b>先尝试，再核对</b>。'+(p.type==='daily'?'错处最多再练 1 次。':'周末先留下独立回想的记录。')+'不是全部做对才算完成，也不用把原文反复抄很多遍。</p></div><div class="actions">'+B('开始第 '+(counts.words?1:counts.recite?2:3)+' 步：'+(counts.words?'字词默写':counts.recite?'开口背诵':'遮住原文默写')+' →','begin-lesson','','primary')+B('返回调整任务','nav','data-to="library"')+'</div></section>';
 }
 function home(){
- const p=C.plan(s),today=s.events.filter(e=>e.day===C.day()),done=s.sessions.some(a=>a.day===C.day()),counts=lessonCounts(C.route(s,p.ids));
- return '<section class="hero"><div class="hero-copy"><div class="eyebrow">星岛语文 · 每日背诵默写课</div><h1>'+esc(s.prefs.name)+'，<br>今天写字词，再背默一小段。</h1><p><b>① 字词默写 → ② 开口背诵<br>③ 遮住原文默写 → ④ 错处回访</b></p><div class="row">'+(s.active?B('继续上次任务 →','resume','','primary'):B(done?'今天已完成 · 看学习记录 →':!s.cards.length?'准备第一份任务 →':'查看今天的任务单 →',done?'today-records':!s.cards.length?'pack':'daily',!s.cards.length?'data-pack="all"':'','primary'))+'</div><div class="journey-strip"><span>建议 '+s.prefs.minutes+' 分钟</span><span>每一步都有具体要求</span><span>今天已做 '+today.length+' 次尝试</span></div></div>'+art()+'</section>'+
- (!s.cards.length?'<section class="card"><h2>先准备老师正在教的内容</h2><p>'+Course.notice+'</p><div class="actions">'+B('加入起步任务（诗文＋字词）','pack','data-pack="all"','primary')+B('录入学校任务','nav','data-to="importView"')+'</div></section>':
- '<div class="grid two"><section class="card"><div class="row between"><h2>今天的任务单</h2><span class="pill">'+counts.words+' 词 · '+counts.recite+' 段</span></div>'+(p.weak?'<div class="tip">最近回想有点吃力，今天先安排旧内容。</div>':'')+(p.ids.length?routeCards(p.ids):'<p>今天可安排的内容已做过。可以休息，或到课本与字词中调整范围。</p>')+'</section><section class="card"><h2>屏幕会明确告诉你怎么做</h2><div class="instruction-example"><small>字词题示例</small><strong>看拼音，写汉字</strong><p>péng you → 写“朋友” → 点“写好了，核对”</p></div><div class="instruction-example"><small>背诵题示例</small><strong>背出指定的原文</strong><p>看到篇名和范围 → 合上课本背出来 → 对照原文核对。<b>不是回答“这句话是什么意思”。</b></p></div><p class="small muted">手写与口头背诵由自己对照；输入文字可以自动找出差异。记录会把两种方式分开。</p><div class="actions">'+B('调整学校篇目','nav','data-to="library"')+B('周末回顾 · 先默写再看原文','weekly')+'</div></section></div>')+backupHint();
+ ensureSourceSelection();
+ const p=C.plan(s),today=s.events.filter(e=>e.day===C.day()),hasSource=(s.sources||[]).length>0;
+ return '<section class="hero"><div class="hero-copy"><div class="eyebrow">星岛语文 · 从你的课本开始</div><h1>'+esc(s.prefs.name)+'，<br>把今天的课文变成小任务。</h1><p>选已拍过的课文页，或拍一张新照片。<br><b>系统挑字词、拆短段，安排每天 8 分钟。</b></p><div class="actions">'+(s.active?B('继续上次任务 →','resume','','primary'):hasSource&&p.ids.length?B('查看今天的任务单 →','daily','','primary'):B(hasSource?'拍下一页，准备新任务 →':'拍课文，自动生成任务 →','nav','data-to="importView"','primary'))+B('选课文与页码','nav','data-to="importView"')+'</div><div class="journey-strip"><span>每天 '+s.prefs.minutes+' 分钟</span><span>无需抄入课文</span><span>今天已做 '+today.length+' 次尝试</span></div></div>'+art()+'</section>'+
+ (hasSource?'<section class="card"><div class="eyebrow">当前范围 · '+esc(G.label(s))+'</div><h2>'+(p.ids.length?'今天这样练':'今天的可用任务已经收好')+'</h2>'+(p.weak?'<p class="tip">最近回想有点吃力，今天优先回访旧内容。</p>':'')+(p.ids.length?routeCards(p.ids):'<p>已经练过的内容会在合适的日期回访。可以休息，也可以换一份已收录的课文。</p>')+'<div class="actions">'+B('换课文或页码','nav','data-to="importView"')+B('周末轻回顾','weekly')+'</div></section>':'<section class="card"><h2>第一次只要拍照，后面不用重复输入</h2><div class="source-steps"><div><b>1 · 拍课文</b><p>拍清正文和页脚，最多 4 张。也可选择已有照片。</p></div><div><b>2 · 自动出卡</b><p>识别篇名与页码，挑字词、拆背默段落；无需自己写任务。</p></div><div><b>3 · 每天练一点</b><p>写 3 个字词，背默 1 小段，再回访 1 处错误。</p></div></div><p class="source-note">当前没有载入你们学校整本语文教材。首次用照片建立课文页；以后可直接按篇名和识别出的纸质页码选择。</p></section>')+backupHint();
 }
 function backupHint(){return s.events.length>=4&&(!s.backupAt||C.gap(C.day(),s.backupAt)>=7)?'<div class="tip row between">把这周的发现留一份到“文件”。'+B('导出备份','export')+'</div>':'';}
 function library(){
  const cards=s.cards.filter(c=>(kindFilter==='all'||c.kind===kindFilter)&&(filter==='all'||filter==='due'&&C.progress(s,c.id).overdue||filter==='repeat'&&C.progress(s,c.id).fails>=2||filter==='school'&&c.source==='school'));
- return '<div class="row between"><div><div class="eyebrow">我的书屋</div><h1>每一张卡，都有自己的线索</h1></div>'+B('加入老师任务','nav','data-to="importView"','primary')+'</div><p class="source-note">'+Course.notice+'</p><div class="row">'+Object.entries(Course.packs).map(([key,p])=>B(p.title,'pack','data-pack="'+key+'"','small')).join('')+'</div><div class="lab-tabs">'+[['all','全部'],['word','字词'],['recite','背诵']].map(([k,l])=>B(l,'kind','data-kind="'+k+'"',kindFilter===k?'secondary':'')).join('')+'</div><div class="lab-tabs">'+[['all','所有卡片'],['due','该回访了'],['repeat','需多照顾'],['school','学校录入']].map(([k,l])=>B(l,'filter','data-filter="'+k+'"',filter===k?'secondary':'')).join('')+'</div><div class="tip">打开卡片会看见原文，该内容今天的后续回想将记为“看过后练习”。输入法候选字也可能提供帮助。</div><div class="grid word-grid">'+cards.map(c=>{const p=C.progress(s,c.id);return '<section class="card"><span class="pill">'+(c.source==='school'?'学校录入':'起步示例')+' · '+(c.enabled?p.label:'暂不练习')+'</span><h3 style="margin-top:16px">'+esc(c.kind==='word'?(c.clue||c.pinyin):c.title)+'</h3><p class="small muted">'+(c.kind==='word'?'字词卡':'背诵卡')+' · 回访：'+(p.due||'首次探索')+'<br>隔日自核 '+p.selfDays.length+' 天 · 文本核对 '+p.textDays.length+' 天</p><div class="actions">'+B('打开卡片','card',D(c.id))+B(c.enabled?'暂停':'启用','toggle',D(c.id),'quiet')+'</div></section>';}).join('')+'</div>'+(!cards.length?'<div class="empty"><p>这里还没有符合条件的卡片。</p></div>':'');
+ return '<div class="row between"><div><div class="eyebrow">我的书屋 · 课文自动变成任务</div><h1>拍过的课文，会留在这里</h1></div>'+B('选页 / 拍照生成','nav','data-to="importView"','primary')+'</div>'+sourcePicker()+'<div class="lab-tabs">'+[['all','全部卡片'],['word','字词'],['recite','背默']].map(([k,l])=>B(l,'kind','data-kind="'+k+'"',kindFilter===k?'secondary':'')).join('')+'</div><div class="tip">打开卡片会看见原文；今天之后的回想会记为“看过后练习”。新卡先学习，隔天再观察能否独立记起。</div><div class="grid word-grid">'+cards.map(c=>{const pr=C.progress(s,c.id),auto=(s.sources||[]).some(x=>x.items.some(i=>i.cardId===c.id));return '<section class="card"><span class="pill">'+(auto?'照片生成':c.source==='school'?'原有学校材料':'原有示例')+' · '+(c.enabled?pr.label:'暂不练习')+'</span><h3>'+esc(c.title)+'</h3><p>'+esc(c.kind==='word'?(c.pinyin||c.clue):'背默一小段 · '+[...C.norm(c.text)].length+' 字')+'</p><p class="small muted">回访：'+(pr.due||'首次探索')+'</p><div class="actions">'+B('打开卡片','card',D(c.id))+B(c.enabled?'暂停':'启用','toggle',D(c.id),'quiet')+'</div></section>';}).join('')+'</div>'+(!cards.length?'<div class="empty"><p>拍一页正在学的课文，系统就会为你准备卡片。</p></div>':'');
 }
 function studyHTML(c){return '<div class="eyebrow">'+esc(c.title)+'</div>'+(c.pinyin?'<p class="pinyin">'+esc(c.pinyin)+'</p>':'')+'<div class="poem">'+esc(c.text)+'</div><p><b>'+(c.kind==='word'?'词义：':'理解线索（帮助记忆，不用作答）：')+'</b>'+esc(c.clue)+'</p><div class="tip">'+esc(c.tip||'先说出这段的意思，挑一个最容易漏的字或顺序，用自己的话做个提醒。')+'</div>';}
-function showCard(id){const c=card(id);if(!c)return;previewId=id;mark(id);modal(c.kind==='word'?'字词线索':'诗文线索',studyHTML(c)+'<p class="source-note">原文由起步包或您录入的学校材料提供，请以课堂版本为准。</p><div class="actions">'+B('听一遍','speak',D(id))+B('合上练一张','one',D(id),'primary')+'</div><div class="actions">'+B('写我的线索','edit-tip',D(id),'quiet')+B('学校反馈：需再练','flag',D(id),'quiet')+'</div>');}
-function importView(){return '<div class="eyebrow">每周一次，带上学校正在学的内容</div><h1>把老师的小任务拆成小卡片</h1><div class="grid two"><section class="card settings"><label for="import-kind">内容类型</label><select id="import-kind"><option value="word">字词默写</option><option value="recite">课文／古诗背诵</option></select><label for="import-title">篇名或任务名</label><input id="import-title" maxlength="100" placeholder="如：第 1 课 · 老师要求的第 2 段"><label for="lesson-input">每行一张卡，用 | 分列</label><textarea id="lesson-input" rows="9" placeholder="朗诵 | lǎng sòng | 大声有感情地读 | 诵是言字旁"></textarea><label class="toggle"><input type="checkbox" id="already-known">已经学过，先尝试独立回想</label><p class="source-note">若由孩子本人录入并看过答案，当天会记为练习。保存的课文只留在本机。</p>'+B('预览并核对','preview-list','','primary')+'<div id="list-error" class="error-text" role="alert"></div></section><section class="card"><h2>字词：一行一个</h2><div class="saved-answer">字词 | 拼音 | 意思或提示 | 记忆线索</div><p class="small">至少填写字词和拼音；词义和线索可选。只录 5—10 个近期确实需要的词。</p><h2>背诵：一行一小段</h2><div class="saved-answer">原文 | 不泄露原文的意思提示 | 记忆线索</div><p class="small">每段 1—2 句、最多 120 字。换行会拆成新卡；不要一次把长课文塞到一题里。</p><div class="tip">原文会成为核对标准。请先对照课本检查字词、标点与老师要求的范围。修改正文时请暂停旧卡、重新录入，以保留历史记录的含义。</div>'+B('回到书屋','nav','data-to="library"')+'</section></div>';}
+function showCard(id){const c=card(id);if(!c)return;previewId=id;mark(id);modal(c.kind==='word'?'字词线索':'诗文线索',studyHTML(c)+'<p class="source-note">照片生成的卡片保留了篇名和页码。发现与课本不符时可暂停该卡，重新拍清楚这一页。</p><div class="actions">'+B('听一遍','speak',D(id))+B('合上练一张','one',D(id),'primary')+'</div><div class="actions">'+B('写我的线索','edit-tip',D(id),'quiet')+B('学校反馈：需再练','flag',D(id),'quiet')+'</div>');}
+let sourcePhotos=[],generating=false,generationMessage='',generationError='',generatedNotice='',pendingJob=null,photoMode='both';
+const accessKey=store+'-access',jobKey=store+'-generation';
+const api=location.hostname==='localhost'||location.hostname==='127.0.0.1'?'http://127.0.0.1:4190':G.API;
+const activationTicket=new URLSearchParams(location.hash.slice(1)).get('activate');
+if(activationTicket)history.replaceState(null,'',location.pathname+location.search);
+function accessToken(){try{return localStorage.getItem(accessKey)||'';}catch(e){return '';}}
+function ensureSourceSelection(){const sources=s.sources||[];if(sources.length&&!sources.some(x=>x.id===s.prefs.sourceId)){s.prefs.sourceId=sources.at(-1).id;s.prefs.sourceImage=0;s.prefs.sourceMode='both';save();}}
+function sourcePicker(){
+ ensureSourceSelection();
+ const sources=s.sources||[],selected=sources.find(x=>x.id===s.prefs.sourceId)||sources.at(-1);
+ if(!selected)return '<section class="card"><h2>按课文和页码选择</h2><p>拍过的课文会自动出现在这里，无需填写篇名、页码或任务文字。</p><p class="source-note">还没有课文页，请先用下方“拍照生成”。不能只凭一个未收录的页码猜原文。</p></section>';
+ const options=selected.pages.map(p=>'<option value="'+p.image+'" '+(s.prefs.sourceImage===p.image?'selected':'')+'>'+esc(p.page?'第 '+p.page+' 页 · '+p.lesson:'照片 '+p.image+' · '+p.lesson+'（页码未拍到）')+'</option>').join('');
+ return '<section class="card settings source-picker"><div class="eyebrow">方式一 · 直接用已收录的课文</div><h2>选课文与页码</h2><div class="grid two"><div><label for="source-book">已拍过的课文</label><select id="source-book">'+sources.map(x=>'<option value="'+esc(x.id)+'" '+(x.id===selected.id?'selected':'')+'>'+esc(x.title)+'</option>').join('')+'</select></div><div><label for="source-page">这次练哪一页</label><select id="source-page"><option value="0">全部已拍页</option>'+options+'</select></div></div><label for="source-mode">练习内容</label><select id="source-mode">'+[['both','字词 + 背默'],['word','只练字词'],['recite','只练背默']].map(([k,l])=>'<option value="'+k+'" '+(s.prefs.sourceMode===k?'selected':'')+'>'+l+'</option>').join('')+'</select><p class="small muted">只选择范围，系统自动安排每天少量任务；已练过的内容按日期回访。</p>'+B('按这个范围安排今日任务 →','source-plan','','primary')+'</section>';
+}
+function importView(){return '<div class="eyebrow">课本 → 任务卡 → 每日小路线</div><h1>拍课文，系统来准备任务</h1><p>不用打字录入课文，不用家长拆段或出题。</p>'+(generatedNotice?'<div class="tip" role="status">'+esc(generatedNotice)+'</div>':'')+sourcePicker()+'<section class="card photo-generator"><div class="eyebrow">方式二 · 加入正在学的新页</div><h2>拍照，或从相册选课文</h2><p>每张拍一页，正文、篇名和纸质页码尽量拍全。最多 4 张，系统自动识别。</p><div class="actions">'+B('拍一页课文','photo-camera',generating?'disabled':'','primary')+B('从相册选照片','photo-album',generating?'disabled':'')+'</div><input id="photo-camera" type="file" accept="image/*" capture="environment" hidden><input id="photo-album" type="file" accept="image/*" multiple hidden><div class="photo-grid">'+sourcePhotos.map((p,i)=>'<figure><img src="'+p.data+'" alt="待识别的课文照片 '+(i+1)+'"><figcaption>照片 '+(i+1)+' '+B('移除','photo-remove','data-index="'+i+'" '+(generating?'disabled':''),'quiet small')+'</figcaption></figure>').join('')+'</div><div class="settings"><label for="photo-mode">生成哪些任务</label><select id="photo-mode" '+(generating?'disabled':'')+'>'+[['both','字词 + 背默（每天约 8 分钟）'],['word','只练字词'],['recite','只练背默']].map(([k,l])=>'<option value="'+k+'" '+(photoMode===k?'selected':'')+'>'+l+'</option>').join('')+'</select></div><p class="source-note">照片将发送给智谱 AI 用于识别和出卡，不发送学习记录。照片不写入服务器磁盘，处理后释放；生成结果在服务器内存短暂保留以便取回。卡片保存在这台 iPad，之后可离线练。</p>'+(accessToken()?'':'<p class="tip">这台设备需要先打开家庭启用链接一次。无需填写 AI 密钥。</p>')+'<div class="actions">'+B(generating?'正在准备任务…':pendingJob?'继续取回上次任务 →':'自动生成任务卡 →','photo-generate',generating||!sourcePhotos.length&&!pendingJob?'disabled':'','primary')+'</div><p id="generation-status" role="status">'+esc(generationMessage)+'</p><p class="error-text" role="alert">'+esc(generationError)+'</p><p class="small muted">未拍到的内容不会补写。照片中没有明确背诵要求时，生成的是练习建议；可选“只练字词”。看不清会请你重拍，不需要手工修改原文。</p></section>';}
+function refreshGeneration(){if(view==='importView')render();}
+async function apiRequest(path,options={}){
+ const controller=new AbortController(),timer=setTimeout(()=>controller.abort(),70000);
+ try{
+  const r=await fetch(api+path,{...options,headers:{'Content-Type':'application/json',...(accessToken()?{'Authorization':'Bearer '+accessToken()}:{}),...options.headers},signal:controller.signal});
+  const data=await r.json().catch(()=>({message:'识别服务正在启动，请稍后再试。'}));
+  if(!r.ok){const error=Error(data.message||'暂时无法识别，请稍后再试。');error.status=r.status;throw error;}return data;
+ }catch(e){if(e.name==='AbortError')throw Error('服务启动较慢，请稍后重试；已有任务可以继续练。');if(e instanceof TypeError)throw Error('现在没有连上识别服务，请检查网络后重试。');throw e;}finally{clearTimeout(timer);}
+}
+async function activate(){
+ if(!activationTicket)return;
+ generationMessage='正在为这台设备启用照片生成…';view='importView';render();
+ try{const data=await apiRequest('/activate',{method:'POST',body:JSON.stringify({ticket:activationTicket})});localStorage.setItem(accessKey,data.token);generationMessage='照片生成已启用，接下来只需拍课文。';tell('这台设备已启用照片生成。');}
+ catch(e){generationError=e.message;generationMessage='';}refreshGeneration();
+}
+async function photoData(file){
+ if(!file.type.startsWith('image/')||file.size>30*1024*1024)throw Error('请选择 30 MB 以下的照片或截图。');
+ const url=URL.createObjectURL(file);
+ try{
+  const img=await new Promise((resolve,reject)=>{const el=new Image();el.onload=()=>resolve(el);el.onerror=()=>reject(Error('这张照片无法打开，请改用相机拍照或截图。'));el.src=url;});
+  if(Math.min(img.naturalWidth,img.naturalHeight)<200)throw Error('这张照片太小，请拍清楚整页。');
+  const ratio=Math.min(1,1800/Math.max(img.naturalWidth,img.naturalHeight)),c=document.createElement('canvas');c.width=Math.round(img.naturalWidth*ratio);c.height=Math.round(img.naturalHeight*ratio);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+  let data=c.toDataURL('image/jpeg',.86);if(data.length>2200000)data=c.toDataURL('image/jpeg',.7);if(data.length>2300000)throw Error('照片太大，请只拍一页。');return {data};
+ }finally{URL.revokeObjectURL(url);}
+}
+async function addPhotos(files){
+ if(generating)return;if(sourcePhotos.length+files.length>4){tell('每次最多选 4 张照片。');return;}
+ try{const added=[];for(const f of files)added.push(await photoData(f));sourcePhotos.push(...added);generationError='';generatedNotice='';refreshGeneration();}
+ catch(e){generationError=e.message;refreshGeneration();}
+}
+async function waitForGeneration(id){
+ const start=Date.now();let failures=0;
+ while(Date.now()-start<6*60000){
+  generationMessage=Date.now()-start>45000?'仍在核对文字和任务来源，可先去做已有任务。':'正在识别原文、核对照片，并拆成小任务…';const status=$('generation-status');if(status)status.textContent=generationMessage;
+  let job;try{job=await apiRequest('/jobs/'+id);failures=0;}catch(e){if(e.status===404){sessionStorage.removeItem(jobKey);pendingJob=null;throw e;}if(++failures>=3)throw e;await new Promise(r=>setTimeout(r,4000));continue;}
+  if(job.status==='failed'){sessionStorage.removeItem(jobKey);pendingJob=null;throw Error(job.message);}
+  if(job.status==='done'){
+   if(recovery)throw Error('旧记录暂时无法读取，请先到设置中恢复备份。');
+   s=G.accept(s,job.result);save();sessionStorage.removeItem(jobKey);pendingJob=null;sourcePhotos=[];
+   const words=job.result.cards.filter(c=>c.kind==='word').length,recites=job.result.cards.filter(c=>c.kind==='recite').length;
+   generatedNotice='已准备 '+words+' 张字词卡、'+recites+' 张背默卡。每天只练少量，其余按天安排。';generationMessage='任务已保存到这台设备。';tell(generatedNotice);return;
+  }
+  await new Promise(r=>setTimeout(r,2500));
+ }
+ throw Error('这次生成等待较久。重开此页会继续取回结果，不必重新上传照片。');
+}
+async function generatePhotos(){
+ if(generating||recovery)return;if(!accessToken()){generationError='请先打开家庭启用链接一次，再拍照生成。';refreshGeneration();return;}
+ const mode=$('photo-mode')?.value||'both';generating=true;generationError='';generationMessage='正在连接识别服务；首次启动可能需要约 1 分钟。';refreshGeneration();
+ try{
+  if(!pendingJob){const job=await apiRequest('/jobs',{method:'POST',body:JSON.stringify({mode,images:sourcePhotos.map(p=>p.data)})});pendingJob=job.id;sessionStorage.setItem(jobKey,pendingJob);}
+  await waitForGeneration(pendingJob);
+ }catch(e){generationError=e.message;}finally{generating=false;refreshGeneration();}
+}
+
 function newItem(id,phase='cold'){const c=card(id);return {cardId:id,startedDay:C.day(),phase:C.exposure(s,id)?'practice':phase,method:'self',selfMode:c.kind==='recite'?'say':'write',draft:'',drawing:[],hints:0,seconds:0,eventId:null,revealed:false,ready:false,learn:!c.known&&!C.progress(s,id).seen};}
 function start(ids,type='daily'){
  close();if(recovery){tell('请先导出恢复文件，当前不会覆盖旧记录。');return;}
  if(s.active){modal('上次的小路线还在','<p>先继续或收好上次的尝试。</p><div class="actions">'+B('继续上次','resume','','primary')+B('结束并保存','finish')+'</div>');return;}
- if(!ids.length){tell(type==='weekly'?'先练几张卡，再做周末回顾。今天也可以休息。':!s.cards.length?'先加入起步包，或录入老师任务。':'今天可安排的卡片已走过。可以休息，或到书屋启用老师的任务。');return;}
+ if(!ids.length){tell(type==='weekly'?'先练几张卡，再做周末回顾。今天也可以休息。':!s.cards.length?'先拍一页课文，自动生成任务。':'今天可安排的卡片已走过。可以休息，或到书屋启用老师的任务。');return;}
  s.active={id:C.uid(),type,day:C.day(),queue:C.route(s,ids,type).map(r=>{const it={...newItem(r.cardId,r.phase),...r};if(C.exposure(s,r.cardId))it.phase='practice';if(r.step==='dictate')it.learn=false;return it;}),index:0,seconds:0,added:0};save();nav('session');
 }
 function phaseLabel(it){return it.phase==='cold'&&it.startedDay===C.day()&&!it.hints?'合上后的首次回想':'看过／提示后练习';}
@@ -338,7 +458,7 @@ async function resetHistory(){
  finally{resettingHistory=false;}
 }
 function settings(){
- return '<div class="eyebrow">照顾节奏，也照顾记录</div><h1>让书屋按你的步子走</h1><div class="grid two"><section class="card settings"><label for="nickname">岛上的称呼</label><input id="nickname" maxlength="12" value="'+esc(s.prefs.name)+'"><label for="minutes">每天的时间</label><select id="minutes"><option value="8" '+(s.prefs.minutes===8?'selected':'')+'>8 分钟 · 平日小路线</option><option value="5" '+(s.prefs.minutes===5?'selected':'')+'>5 分钟 · 忙碌日减量</option></select>'+B('记住这个节奏','prefs','','primary')+'<hr class="breakline"><h2>iPad 安装与离线</h2><p>在 Safari 打开安装网址 → 分享 → 添加到主屏幕。第一次保持联网，等待下方提示资源已备好，再断网重开验证。</p><p id="offline-status" class="tip">'+(offline?'离线资源已备好，可断网重开一次确认。':'正在检查离线资源；请从安装网址打开。')+'</p>'+B('检查离线资源','offline')+'<p class="source-note">系统朗读需要本机中文声音；缺少声音也可以看拼音与词义完成任务。离线不需要 AI。</p></section><section class="card"><h2>把记录留得更久</h2><p>练习、笔迹、学校原文保存在这台设备，不发送给服务器或 AI。Safari 和主屏幕入口的记录不一定共享；安装后请固定从主屏幕使用。</p><div class="actions">'+B('导出 JSON 备份','export','','primary')+B('合并备份','import')+'</div><p class="source-note">每周保存一次到 iPad“文件”。清除网站数据、更换设备或系统回收存储可能丢失本机记录。备份包含已提交作答与笔迹；未完成草稿仍留在当前设备。</p>'+B('请求保留本机存储','persist')+'<hr class="breakline"><h2>先看两周的变化</h2><p>每周只检查：常错字是否减少？隔天能否想起？她能否说出自己的记忆线索？不用每天陪练或重抄整页。</p><p class="small muted">三科学习总量请按当天作业调整。语文 8 分钟可替代当日重复抄写时间；忙碌时轮换，不必把三套任务全部叠加。</p></section>'+historyResetCard()+'<section class="card"><h2>内容范围</h2><p>'+Course.notice+'</p><p>现有古诗为公版作品，记忆提示为原创。未收录完整现代课文；学校需要的段落可本机录入。字词示例不代表孩子已经写错过这些词。</p><p><a href="https://www.pep.com.cn/" target="_blank" rel="noreferrer">人教社教材电子版入口 ↗</a></p></section><section class="card"><h2>这些记录能说明什么</h2><p>手写和口头背诵采用明确自核；文字核对检查漏字、多字和替换，标点单独提醒。没有自动字形、笔顺、发音或完整语文能力评分。</p><p class="small muted">间隔回想和反馈参考 <a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/1" target="_blank" rel="noreferrer">IES 学习指南</a>。每天分钟数、卡片量和跨日阈值是可调整的实践起点，不是个体诊断。</p><p class="small muted">如果学校反馈与自核长期不一致，周末选一张卡，请老师或家长核一次即可，据此调整任务难度。</p></section></div>';
+ return '<div class="eyebrow">照顾节奏，也照顾记录</div><h1>让书屋按你的步子走</h1><div class="grid two"><section class="card settings"><label for="nickname">岛上的称呼</label><input id="nickname" maxlength="12" value="'+esc(s.prefs.name)+'"><label for="minutes">每天的时间</label><select id="minutes"><option value="8" '+(s.prefs.minutes===8?'selected':'')+'>8 分钟 · 平日小路线</option><option value="5" '+(s.prefs.minutes===5?'selected':'')+'>5 分钟 · 忙碌日减量</option></select>'+B('记住这个节奏','prefs','','primary')+'<hr class="breakline"><h2>iPad 安装与离线</h2><p>在 Safari 打开安装网址 → 分享 → 添加到主屏幕。第一次保持联网，等待下方提示资源已备好，再断网重开验证。</p><p id="offline-status" class="tip">'+(offline?'离线资源已备好，可断网重开一次确认。':'正在检查离线资源；请从安装网址打开。')+'</p>'+B('检查离线资源','offline')+'<p class="source-note">首次生成新卡需要联网；已保存卡片、每日任务和记录可离线使用。系统朗读需要本机中文声音。</p></section><section class="card"><h2>把记录留得更久</h2><p>练习、笔迹和学习记录保存在这台设备，不发送给 AI。拍照生成时仅上传所选课文照片，由智谱识别和出卡；卡片随后保存在本机。Safari 和主屏幕入口的记录不一定共享；安装后请固定从主屏幕使用。</p><div class="actions">'+B('导出 JSON 备份','export','','primary')+B('合并备份','import')+'</div><p class="source-note">每周保存一次到 iPad“文件”。清除网站数据、更换设备或系统回收存储可能丢失本机记录。备份包含已提交作答与笔迹；未完成草稿仍留在当前设备。</p>'+B('请求保留本机存储','persist')+'<hr class="breakline"><h2>先看两周的变化</h2><p>每周只检查：常错字是否减少？隔天能否想起？她能否说出自己的记忆线索？不用每天陪练或重抄整页。</p><p class="small muted">三科学习总量请按当天作业调整。语文 8 分钟可替代当日重复抄写时间；忙碌时轮换，不必把三套任务全部叠加。</p></section>'+historyResetCard()+'<section class="card"><h2>内容范围</h2><p>以学校正在学的真实课本照片为来源，不根据篇名或陌生页码猜测课文。</p><p>课文与字词由所选照片自动生成。当前未预装整本学校教材；拍过的内容可按篇名、纸质页码选择，未识别到页码则按照片序号显示。AI 无法保证零误差，发现问题可暂停卡片并重新拍照，无需手工录入原文。</p><p><a href="https://www.pep.com.cn/" target="_blank" rel="noreferrer">人教社教材电子版入口 ↗</a></p></section><section class="card"><h2>这些记录能说明什么</h2><p>手写和口头背诵采用明确自核；文字核对检查漏字、多字和替换，标点单独提醒。没有自动字形、笔顺、发音或完整语文能力评分。</p><p class="small muted">间隔回想和反馈参考 <a href="https://ies.ed.gov/ncee/wwc/PracticeGuide/1" target="_blank" rel="noreferrer">IES 学习指南</a>。每天分钟数、卡片量和跨日阈值是可调整的实践起点，不是个体诊断。</p><p class="small muted">如果学校反馈与自核长期不一致，周末选一张卡，请老师或家长核一次即可，据此调整任务难度。</p></section></div>';
 }
 function speak(id){
  const c=card(id);if(!c)return;
@@ -369,7 +489,12 @@ async function offlineSetup(){
  if($('offline-status'))$('offline-status').textContent=offline?'离线资源已备好，可断网重开一次确认。':'离线资源尚未备好，请保持联网并从 Safari 安装网址重开。';
 }
 document.addEventListener('input',e=>{if(e.target.id==='answer'&&item()){item().draft=e.target.value;save();}});
-document.addEventListener('change',e=>{
+document.addEventListener('change',async e=>{
+ if(e.target.id==='photo-mode'){photoMode=e.target.value;return;}
+ if(['photo-camera','photo-album'].includes(e.target.id)){const files=[...e.target.files];e.target.value='';await addPhotos(files);return;}
+ if(e.target.id==='source-book'){s.prefs.sourceId=e.target.value;s.prefs.sourceImage=0;save();render();return;}
+ if(e.target.id==='source-page'){s.prefs.sourceImage=Number(e.target.value);save();return;}
+ if(e.target.id==='source-mode'){s.prefs.sourceMode=e.target.value;save();return;}
  if(e.target.id==='ready'&&item()){item().ready=e.target.checked;save();const b=document.querySelector('[data-action="reveal"]');if(b)b.disabled=!item().ready;}
  if(e.target.id==='pen-only'){s.prefs.penOnly=e.target.checked;save();}
  if(e.target.id==='outside-help'&&item()){item().hints=Math.max(item().hints,1);item().phase='practice';e.target.checked=true;save();}
@@ -382,6 +507,10 @@ document.addEventListener('keydown',e=>{
 document.addEventListener('click',async ev=>{
  const el=ev.target.closest('[data-action]');if(!el||el.disabled||resettingHistory)return;const d=el.dataset;
  switch(d.action){
+ case 'photo-camera':$('photo-camera')?.click();break;case 'photo-album':$('photo-album')?.click();break;
+ case 'photo-remove':sourcePhotos.splice(Number(d.index),1);render();break;
+ case 'photo-generate':await generatePhotos();break;
+ case 'source-plan':s.prefs.sourceId=$('source-book').value;s.prefs.sourceImage=Number($('source-page').value);s.prefs.sourceMode=$('source-mode').value;save();planLesson(C.plan(s).ids);break;
  case 'reset-history':askHistoryReset();break;case 'confirm-reset-history':await resetHistory();break;
  case 'nav':close();nav(d.to);break;case 'close':close();break;
  case 'today-records':nav('records');break;
@@ -406,8 +535,6 @@ document.addEventListener('click',async ev=>{
  case 'tip-ok':card(d.id).tip=$('my-tip').value.slice(0,240);save();close();tell('自己的线索，已经放进卡片。');break;
  case 'flag':modal('记录学校反馈','<p>只有老师的作业或默写确实标出这张卡需要再练时，才记录。记录会从今天重新安排回访。</p><div class="actions">'+B('确有学校反馈，记录','flag-ok',D(d.id),'primary')+B('取消','close')+'</div>');break;
  case 'flag-ok':s.flags.push({id:C.uid(),cardId:d.id,day:C.day(),at:Date.now()});save();close();tell('已标记，下次优先回访。');break;
- case 'preview-list':try{draftCards=C.parseList($('lesson-input').value,$('import-kind').value,$('import-title').value,$('already-known').checked);const seen=new Set(s.cards.map(C.identity)),fresh=draftCards.filter(c=>!seen.has(C.identity(c)));modal('请对照课本，核对原文','<p>将加入 '+fresh.length+' 张新卡；跳过 '+(draftCards.length-fresh.length)+' 张重复内容。</p><div class="preview-list">'+draftCards.map(c=>'<div class="unit"><strong>'+esc(c.text)+'</strong><br><span class="small muted">'+esc(c.pinyin||c.clue)+'</span></div>').join('')+'</div><label class="inline-checkbox"><input id="child-entered" type="checkbox" checked>孩子本人刚才看过这些原文</label><p class="source-note">勾选后今天记为练习；明天再观察独立回想。</p><div class="actions">'+B('已核对，加入书屋','confirm-list','','primary')+B('返回修改','close')+'</div>');}catch(e){$('list-error').textContent=e.message;}break;
- case 'confirm-list':{const seen=new Set(s.cards.map(C.identity)),viewed=$('child-entered').checked;for(const c of draftCards||[]){if(!seen.has(C.identity(c))){s.cards.push(c);seen.add(C.identity(c));}if(viewed){const existing=s.cards.find(x=>C.identity(x)===C.identity(c));mark(existing.id);}}draftCards=null;save();close();nav('home');tell('学校任务已加入。每天只取少量，不要求一次完成。');break;}
  case 'prefs':s.prefs.name=$('nickname').value.trim().slice(0,12)||'小探索家';s.prefs.minutes=Number($('minutes').value);save();tell('已经记住这个节奏。');break;
  case 'review':{const e=s.events.find(x=>x.id===d.id);if(e){const c=card(e.cardId);mark(c.id);modal('回看这次发现','<p class="source-note">'+e.day+' · '+eventLabel(e)+'</p>'+studyHTML(c)+(e.method==='text'?diffHTML(c,e):drawingSVG(e.drawing))+'<p>自己的标记：'+esc(e.note||'暂无')+'</p>'+B('收好','close','','primary'));}break;}
  case 'export':backup();break;case 'export-summary':exportSummary();break;
@@ -426,5 +553,7 @@ document.addEventListener('visibilitychange',()=>{tick();if(document.hidden)save
 window.addEventListener('pagehide',()=>{tick();save();});
 setInterval(()=>{tick();if(s.active){save();if($('timer-label'))$('timer-label').textContent=Math.floor(s.active.seconds/60);if($('time-limit'))$('time-limit').hidden=s.active.seconds<(s.active.type==='weekly'?300:s.prefs.minutes*60);}},5000);
 render();offlineSetup();
+await activate();
+try{pendingJob=sessionStorage.getItem(jobKey);if(pendingJob&&accessToken()){generating=true;generationMessage='正在取回上次生成的任务…';view='importView';render();await waitForGeneration(pendingJob);}}catch(e){generationError=e.message;}finally{generating=false;refreshGeneration();}
 })();
 </script></body></html>

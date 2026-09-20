@@ -125,6 +125,7 @@ def validate_cards(result,pages,mode,source_id):
             start=canonical(page['text']).find(canonical(text));end=start+n
             if any(start<oldend and end>oldstart for oldstart,oldend in recite_ranges.get(im,[])): continue
             recite_ranges.setdefault(im,[]).append((start,end))
+        if kind=='word' and len(canonical(page['text']))<=50 and parts.get((im,kind),0)>=5: continue
         seen.add(key);counts[kind]+=1
         if counts[kind]>(12 if kind=='word' else 8): raise Problem('这组任务过多，请减少照片数量。')
         pinyin=string(c.get('pinyin',''),80,False);clue=string(c.get('clue',''),160,False);tip=string(c.get('tip',''),240,False)
